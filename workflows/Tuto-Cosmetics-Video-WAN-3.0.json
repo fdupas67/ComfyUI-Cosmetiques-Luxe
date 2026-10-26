@@ -1,0 +1,990 @@
+{
+  "id": "9a8da4c0-0c4f-4a2f-a741-31e3c442f533",
+  "revision": 0,
+  "last_node_id": 32,
+  "last_link_id": 30,
+  "nodes": [
+    {
+      "id": 6,
+      "type": "LoadImage",
+      "pos": [
+        -4406.376900958654,
+        5885.359052258815
+      ],
+      "size": [
+        290,
+        350
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Élégance elfique du gloss prune.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "Élégance elfique du gloss prune.png",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 14,
+      "type": "MarkdownNote",
+      "pos": [
+        -4394.90690640286,
+        5408.05969647955
+      ],
+      "size": [
+        380,
+        400
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Note: Input Asset",
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "# Publicités NOCTURIA avec WAN\n\nChoisir une branche avant le rendu et sélectionner vos fichiers dans ses Load Image.\n\n- Scène complète : image1 produit, image2 visage, image3 tenue, image4 lieu.\n- Produit seul : image1 produit, image2 lieu.\n\nAdapter le produit, son nom, le geste, le format et la durée dans le prompt ET dans les réglages du node. Vérifier le préfixe SaveVideo : celui de la scène sérum est encore nommé Gothic_Powder dans cet export. Le prompt de produit seul contient des restes de texte sur le sérum : le remplacer par l'exemple parfum du manuel.\n\nLes images personnelles ne sont pas incluses dans les JSON. Vérifier les nodes actifs, l'accès API et le coût affiché avant de lancer. Regarder la vidéo avec le son et contrôler les inscriptions, les gestes et les raccords.\n\nManuel : docs/manuel.md ou docs/manuel.html dans le paquet.\n"
+      ],
+      "widgets_values_named": {
+        "text": "**Input Asset** \n\n\n- [vortex_shoe.png](https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/input/vortex_shoe.png) — required workflow input (`input/vortex_shoe.png`)\n- [psss_character.png](https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/input/psss_character.png) — required workflow input (`input/psss_character.png`)\n\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n\n- Cannot run / runtime errors: [ComfyUI/issues](https://github.com/comfyanonymous/ComfyUI/issues)\n- UI / frontend issues: [ComfyUI_frontend/issues](https://github.com/Comfy-Org/ComfyUI_frontend/issues)\n- Workflow issues: [workflow_templates/issues](https://github.com/Comfy-Org/workflow_templates/issues)\n"
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 16,
+      "type": "Wan3ReferenceToVideoApi",
+      "pos": [
+        -2594.7889439587602,
+        5457.605528020623
+      ],
+      "size": [
+        500.1198496235579,
+        956.4533920844106
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "model.reference_images.image1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 21
+        },
+        {
+          "name": "model.reference_images.image2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 22
+        },
+        {
+          "name": "model.reference_images.image3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 24
+        },
+        {
+          "name": "model.reference_images.image4",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 25
+        },
+        {
+          "name": "model.reference_images.image5",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "model.reference_videos.video1",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": null
+        },
+        {
+          "name": "model.reference_videos.video2",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": null
+        },
+        {
+          "name": "model.reference_audios.audio1",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "model.reference_audios.audio2",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            11
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Wan3ReferenceToVideoApi",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "wan3.0-video",
+        "Create a 15-second cinematic luxury Serum commercial in horizontal\n16:9, with three elegant shots.\n\nREFERENCES:\n@Image1 defines the exact serum.\n@Image2 defines the adult gothic woman's facial identity, long hairstyle\n@Image3 defines her outfit and body proportions.\n@Image4 defines the location.\n\nUsing the NOCTURIA “Moonlight Elixir” serum in @Image1 and\nthe adult woman in @Image2, create a 15-second photorealistic\nluxury skincare commercial in landscape orientation, 16:9.\n\nPreserve the woman's facial identity and natural skin tone.\nDress her in a Wednesday Addams-inspired black gothic outfit\nwith a white collar. Keep her complexion makeup minimal.\n\n0–5 seconds:\nClose-up of the serum bottle and its dropper. Preserve the exact\nbottle, materials and inscriptions “NOCTURIA” and “Moonlight Elixir”\nfrom @Image1. The glass pipette is attached to the underside of\nthe same dropper cap. Show one bottle and one dropper assembly.\n\n5–10 seconds:\nMacro shot of the pipette held just above a clean fingertip.\nOne small drop of serum forms at the tip and falls onto the finger.\nThe pipette does not touch the skin. Match the serum's appearance\nto the reference. Realistic liquid behavior, natural hands,\none droplet and no continuous stream.\n\n10–15 seconds:\nCut to a beauty close-up as she gently presses the serum onto\none cheek with her fingertips. She lowers her hand and turns\nslightly toward the light, revealing a subtle fresh sheen.\nPreserve freckles, pores and natural skin texture throughout.\nNo instant wrinkle removal or dramatic complexion transformation.\n\nRefined gothic setting with a candlelit background and soft,\nneutral beauty lighting. Delicate glass reflections, restrained\ngestures and realistic skincare application.\nNo extra pipettes, no floating drops, no liquid near the eyes.\n\nSubtle gothic instrumental music, no speech, no subtitles\nor added graphic text.\n\nAudio: a perfect gothic music in a manor",
+        "720P",
+        "16:9",
+        "15",
+        true,
+        true,
+        2024160748,
+        "randomize",
+        false
+      ],
+      "widgets_values_named": {
+        "model": "wan3.0-video",
+        "model.prompt": "Create a 15-second cinematic luxury Serum commercial in horizontal\n16:9, with three elegant shots.\n\nREFERENCES:\n@Image1 defines the exact serum.\n@Image2 defines the adult gothic woman's facial identity, long hairstyle\n@Image3 defines her outfit and body proportions.\n@Image4 defines the location.\n\nUsing the NOCTURIA “Moonlight Elixir” serum in @Image1 and\nthe adult woman in @Image2, create a 15-second photorealistic\nluxury skincare commercial in landscape orientation, 16:9.\n\nPreserve the woman's facial identity and natural skin tone.\nDress her in a Wednesday Addams-inspired black gothic outfit\nwith a white collar. Keep her complexion makeup minimal.\n\n0–5 seconds:\nClose-up of the serum bottle and its dropper. Preserve the exact\nbottle, materials and inscriptions “NOCTURIA” and “Moonlight Elixir”\nfrom @Image1. The glass pipette is attached to the underside of\nthe same dropper cap. Show one bottle and one dropper assembly.\n\n5–10 seconds:\nMacro shot of the pipette held just above a clean fingertip.\nOne small drop of serum forms at the tip and falls onto the finger.\nThe pipette does not touch the skin. Match the serum's appearance\nto the reference. Realistic liquid behavior, natural hands,\none droplet and no continuous stream.\n\n10–15 seconds:\nCut to a beauty close-up as she gently presses the serum onto\none cheek with her fingertips. She lowers her hand and turns\nslightly toward the light, revealing a subtle fresh sheen.\nPreserve freckles, pores and natural skin texture throughout.\nNo instant wrinkle removal or dramatic complexion transformation.\n\nRefined gothic setting with a candlelit background and soft,\nneutral beauty lighting. Delicate glass reflections, restrained\ngestures and realistic skincare application.\nNo extra pipettes, no floating drops, no liquid near the eyes.\n\nSubtle gothic instrumental music, no speech, no subtitles\nor added graphic text.\n\nAudio: a perfect gothic music in a manor",
+        "model.resolution": "720P",
+        "model.ratio": "16:9",
+        "model.duration": "15",
+        "model.audio": true,
+        "model.prompt_extend": true,
+        "seed": 2024160748,
+        "control_after_generate": "randomize",
+        "watermark": false
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 17,
+      "type": "SaveVideo",
+      "pos": [
+        -2039.666494339183,
+        5426.055225074664
+      ],
+      "size": [
+        2049.0322600006198,
+        1274.5806462503488
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveVideo",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Gothic_Powder",
+        "mp4",
+        "h264",
+        "auto",
+        "auto"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Gothic_Powder",
+        "format": "mp4",
+        "format.codec": "h264",
+        "format.codec.encoding": "auto",
+        "codec": "auto"
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 18,
+      "type": "LoadImage",
+      "pos": [
+        -4962.52782037552,
+        5999.859836736308
+      ],
+      "size": [
+        290,
+        350
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "P02_00001_.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "P02_00001_.png",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 19,
+      "type": "Note",
+      "pos": [
+        -4437.201515175514,
+        6336.362139098742
+      ],
+      "size": [
+        347.2479285345862,
+        116.5380597768144
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "The lip gloss product image @Image1, generate a model lip color test video with the woman of image @image2 with Mercredis's black gothic clothes and a gothic music, 15 seconds, por @Image1 trait orientation, highlighting the lip color effect"
+      ],
+      "widgets_values_named": {
+        "text": "The lip gloss product image @Image1, generate a model lip color test video with the woman of image @image2 with Mercredis's black gothic clothes and a gothic music, 15 seconds, por @Image1 trait orientation, highlighting the lip color effect"
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 20,
+      "type": "LoadImage",
+      "pos": [
+        -3426.740913992747,
+        6150.607740586189
+      ],
+      "size": [
+        702.318678624385,
+        521.3762717564532
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            25
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "Victorian-gothic-mansion_00002_.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "Victorian-gothic-mansion_00002_.png",
+        "upload": "image"
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 21,
+      "type": "LoadImage",
+      "pos": [
+        -3140.7434749150493,
+        4999.359824096552
+      ],
+      "size": [
+        533.5120533053764,
+        451.34612837769146
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            22
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        },
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        "CS05_ALESSANDRA_ACCESSORIES_v3.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "CS05_ALESSANDRA_ACCESSORIES_v3.png",
+        "upload": "image"
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 22,
+      "type": "LoadImage",
+      "pos": [
+        -3777.6864039351176,
+        4994.431042524526
+      ],
+      "size": [
+        615.1521618784273,
+        447.12343746275474
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            21
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        },
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        "NOCTURIA-Moonlight-Elixir-Serum_00004_.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "NOCTURIA-Moonlight-Elixir-Serum_00004_.png",
+        "upload": "image"
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 23,
+      "type": "LoadImage",
+      "pos": [
+        -3423.0473655588553,
+        5551.70007820638
+      ],
+      "size": [
+        682.7162474635547,
+        542.8392468530628
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            24
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        },
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        "CS06_ALESSANDRA_Tenues_v3.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "CS06_ALESSANDRA_Tenues_v3.png",
+        "upload": "image"
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 24,
+      "type": "Note",
+      "pos": [
+        -2594.8209111021574,
+        6495.784571728511
+      ],
+      "size": [
+        490.9109032049846,
+        693.5623779737198
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Create a 15-second cinematic luxury perfume commercial in horizontal\n16:9, with three elegant shots.\n\nREFERENCES:\n@Image1 defines the exact perfume bottle, cap, materials, colors\nand label. If it contains several panels, use them as references\nfor one physical product; do not reproduce the reference sheet.\n@Image2 defines the adult elven woman's facial identity, hairstyle\nand subtly pointed ears.\n@Image3 defines her outfit and body proportions.\n@Image4 defines the location.\n\n0–5 seconds:\nIn the forest pavilion from @Image4, the woman stands beside a pale\nstone display pedestal. The closed perfume bottle rests on it.\nFiltered sunlight creates soft patterns across the architecture.\nMedium shot with a slow camera push-in. She gently turns her head\ntoward the camera, with a calm, confident expression. Leaves move\nslightly in the background.\n\n5–10 seconds:\nCut to a closer beauty shot. She holds the same closed bottle\ndelicately at upper-chest height, slightly beside her face. The\nfront label faces the camera, unobstructed by her fingers.\nShe looks directly into the lens, then gives a restrained smile.\nKeep her hands relaxed, the gesture minimal and the bottle steady.\n\n10–15 seconds:\nCut to a hero close-up of the same closed bottle on the pale stone\npedestal. Ferns and the ancient forest remain softly out of focus\nbehind it. A slow, subtle camera move reveals the bottle's material\nand metallic details. Finish with a steady, sharp product shot held\nfor the final two seconds.\n\nPhotorealistic luxury beauty advertising, forest-green, pale stone\nand soft silver palette. Natural skin texture, realistic sunlight,\nelegant and restrained movement. Preserve the woman's identity,\noutfit and the bottle design across all shots. Keep the original\nGREENDALE and Queen Forest inscriptions.\nOne bottle per shot, cap attached throughout. No spraying, no\nopening, no additional products, no floating objects, no magical\ntransformation, no subtitles or added graphic text.\n\nAudio: soft cinematic strings, a few delicate wooden flute notes,\nsubtle leaves rustling and distant forest birds. No speech, no\nsinging. End with a gentle musical resolution."
+      ],
+      "widgets_values_named": {
+        "text": "Create a 15-second cinematic luxury perfume commercial in horizontal\n16:9, with three elegant shots.\n\nREFERENCES:\n@Image1 defines the exact perfume bottle, cap, materials, colors\nand label. If it contains several panels, use them as references\nfor one physical product; do not reproduce the reference sheet.\n@Image2 defines the adult elven woman's facial identity, hairstyle\nand subtly pointed ears.\n@Image3 defines her outfit and body proportions.\n@Image4 defines the location.\n\n0–5 seconds:\nIn the forest pavilion from @Image4, the woman stands beside a pale\nstone display pedestal. The closed perfume bottle rests on it.\nFiltered sunlight creates soft patterns across the architecture.\nMedium shot with a slow camera push-in. She gently turns her head\ntoward the camera, with a calm, confident expression. Leaves move\nslightly in the background.\n\n5–10 seconds:\nCut to a closer beauty shot. She holds the same closed bottle\ndelicately at upper-chest height, slightly beside her face. The\nfront label faces the camera, unobstructed by her fingers.\nShe looks directly into the lens, then gives a restrained smile.\nKeep her hands relaxed, the gesture minimal and the bottle steady.\n\n10–15 seconds:\nCut to a hero close-up of the same closed bottle on the pale stone\npedestal. Ferns and the ancient forest remain softly out of focus\nbehind it. A slow, subtle camera move reveals the bottle's material\nand metallic details. Finish with a steady, sharp product shot held\nfor the final two seconds.\n\nPhotorealistic luxury beauty advertising, forest-green, pale stone\nand soft silver palette. Natural skin texture, realistic sunlight,\nelegant and restrained movement. Preserve the woman's identity,\noutfit and the bottle design across all shots. Keep the original\nGREENDALE and Queen Forest inscriptions.\nOne bottle per shot, cap attached throughout. No spraying, no\nopening, no additional products, no floating objects, no magical\ntransformation, no subtitles or added graphic text.\n\nAudio: soft cinematic strings, a few delicate wooden flute notes,\nsubtle leaves rustling and distant forest birds. No speech, no\nsinging. End with a gentle musical resolution."
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 25,
+      "type": "Note",
+      "pos": [
+        -4414.7375016377355,
+        6514.663657187381
+      ],
+      "size": [
+        378.2351761427517,
+        441.08901619445714
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Using the nail polish product in @Image1 and the adult woman in\n@Image2, create a 10-second photorealistic luxury beauty commercial in portrait orientation, 9:16.\n\nPreserve the woman's facial identity. Dress her in a Wednesday\nAddams-inspired black gothic outfit with a white collar and sleeves that leave her hands clearly visible.\n\nBegin with a close-up of the nail polish bottle beside her hand.\nCut to a macro shot of the brush applying one smooth coat to a single fingernail resting on a black marble surface. The brush is attached to the underside of the bottle cap. Show only one cap and one brush.\n\nFinish with an elegant close-up of her finished manicure beside\nthe closed bottle. She slowly tilts her hand to reveal the polish's color, shine and reflections. Match the nail color and finish to the product reference. Keep the nails consistent in length and shape, with clean cuticles and anatomically natural fingers.\n\nPreserve the bottle design, materials and original label from\n@Image1. Gothic candlelit atmosphere, refined lighting, shallow\ndepth of field. Subtle gothic instrumental music, no speech,\nno subtitles or added text."
+      ],
+      "widgets_values_named": {
+        "text": "Using the nail polish product in @Image1 and the adult woman in\n@Image2, create a 10-second photorealistic luxury beauty commercial in portrait orientation, 9:16.\n\nPreserve the woman's facial identity. Dress her in a Wednesday\nAddams-inspired black gothic outfit with a white collar and sleeves that leave her hands clearly visible.\n\nBegin with a close-up of the nail polish bottle beside her hand.\nCut to a macro shot of the brush applying one smooth coat to a single fingernail resting on a black marble surface. The brush is attached to the underside of the bottle cap. Show only one cap and one brush.\n\nFinish with an elegant close-up of her finished manicure beside\nthe closed bottle. She slowly tilts her hand to reveal the polish's color, shine and reflections. Match the nail color and finish to the product reference. Keep the nails consistent in length and shape, with clean cuticles and anatomically natural fingers.\n\nPreserve the bottle design, materials and original label from\n@Image1. Gothic candlelit atmosphere, refined lighting, shallow\ndepth of field. Subtle gothic instrumental music, no speech,\nno subtitles or added text."
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 26,
+      "type": "LoadImage",
+      "pos": [
+        576.057184019286,
+        5150.396107435626
+      ],
+      "size": [
+        700.0726217545721,
+        456.4298563412931
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            26
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        },
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        "NOCTURIA-Black-Swan-Perfume_00016_.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "NOCTURIA-Black-Swan-Perfume_00016_.png",
+        "upload": "image"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 29,
+      "type": "Wan3ReferenceToVideoApi",
+      "pos": [
+        1386.1592170788103,
+        5211.487029069475
+      ],
+      "size": [
+        516.7257889214211,
+        914.5178716387563
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model.reference_images.image1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 26
+        },
+        {
+          "name": "model.reference_images.image2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 29
+        },
+        {
+          "name": "model.reference_images.image3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "model.reference_videos.video1",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": null
+        },
+        {
+          "name": "model.reference_audios.audio1",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            30
+          ]
+        }
+      ],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        },
+        "Node name for S&R": "Wan3ReferenceToVideoApi",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        "wan3.0-video",
+        "Create a 5-second cinematic Perfume commercial in horizontal\n16:9, with three elegant shots.\n\nREFERENCES:\n@Image1 defines the exact serum.\n@Image2 defines the location.\n\nUsing the NOCTURIA “Black Swan” Perfume in @Image1 in a Gothic room in @Image2, create a 5-second photorealistic luxury skincare commercial in landscape orientation, 16:9.\n\n0–5 seconds:\nSlow travelling Close-up of the Perfume bottle. Preserve the exact\nbottle, materials and inscriptions “NOCTURIA” and “Black Swan”\nfrom @Image1. \n\nRefined gothic setting with a candlelit background and soft,\nneutral beauty lighting. Delicate glass reflections, restrained\ngestures and realistic skincare application.\nNo extra pipettes, no floating drops, no liquid near the eyes.\n\nSubtle gothic instrumental music, no speech, no subtitles\nor added graphic text.\n\nAudio: a perfect gothic music in a manor",
+        "720P",
+        "16:9",
+        "5",
+        true,
+        true,
+        1454687491,
+        "randomize",
+        false
+      ],
+      "widgets_values_named": {
+        "model": "wan3.0-video",
+        "model.prompt": "Create a 5-second cinematic Perfume commercial in horizontal\n16:9, with three elegant shots.\n\nREFERENCES:\n@Image1 defines the exact serum.\n@Image2 defines the location.\n\nUsing the NOCTURIA “Black Swan” Perfume in @Image1 in a Gothic room in @Image2, create a 5-second photorealistic luxury skincare commercial in landscape orientation, 16:9.\n\n0–5 seconds:\nSlow travelling Close-up of the Perfume bottle. Preserve the exact\nbottle, materials and inscriptions “NOCTURIA” and “Black Swan”\nfrom @Image1. \n\nRefined gothic setting with a candlelit background and soft,\nneutral beauty lighting. Delicate glass reflections, restrained\ngestures and realistic skincare application.\nNo extra pipettes, no floating drops, no liquid near the eyes.\n\nSubtle gothic instrumental music, no speech, no subtitles\nor added graphic text.\n\nAudio: a perfect gothic music in a manor",
+        "model.resolution": "720P",
+        "model.ratio": "16:9",
+        "model.duration": "5",
+        "model.audio": true,
+        "model.prompt_extend": true,
+        "seed": 1454687491,
+        "control_after_generate": "randomize",
+        "watermark": false
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 30,
+      "type": "SaveVideo",
+      "pos": [
+        1941.2816666983886,
+        5179.936726123517
+      ],
+      "size": [
+        2049.0322600006198,
+        1274.5806462503488
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 30
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "links": []
+        }
+      ],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        },
+        "Node name for S&R": "SaveVideo",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        "Gothic_Perfume",
+        "mp4",
+        "h264",
+        "auto",
+        "auto"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Gothic_Perfume",
+        "format": "mp4",
+        "format.codec": "h264",
+        "format.codec.encoding": "auto",
+        "codec": "auto"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 31,
+      "type": "LoadImage",
+      "pos": [
+        576.057184019286,
+        5653.651379443366
+      ],
+      "size": [
+        702.318678624385,
+        521.3762717564532
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            29
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        },
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "Victorian-gothic-mansion_00002_.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "Victorian-gothic-mansion_00002_.png",
+        "upload": "image"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 32,
+      "type": "Note",
+      "pos": [
+        1405.833398608319,
+        6176.471603770722
+      ],
+      "size": [
+        490.9109032049846,
+        693.5623779737198
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Create a 15-second cinematic luxury perfume commercial in horizontal\n16:9, with three elegant shots.\n\nREFERENCES:\n@Image1 defines the exact perfume bottle, cap, materials, colors\nand label. If it contains several panels, use them as references\nfor one physical product; do not reproduce the reference sheet.\n@Image2 defines the adult elven woman's facial identity, hairstyle\nand subtly pointed ears.\n@Image3 defines her outfit and body proportions.\n@Image4 defines the location.\n\n0–5 seconds:\nIn the forest pavilion from @Image4, the woman stands beside a pale\nstone display pedestal. The closed perfume bottle rests on it.\nFiltered sunlight creates soft patterns across the architecture.\nMedium shot with a slow camera push-in. She gently turns her head\ntoward the camera, with a calm, confident expression. Leaves move\nslightly in the background.\n\n5–10 seconds:\nCut to a closer beauty shot. She holds the same closed bottle\ndelicately at upper-chest height, slightly beside her face. The\nfront label faces the camera, unobstructed by her fingers.\nShe looks directly into the lens, then gives a restrained smile.\nKeep her hands relaxed, the gesture minimal and the bottle steady.\n\n10–15 seconds:\nCut to a hero close-up of the same closed bottle on the pale stone\npedestal. Ferns and the ancient forest remain softly out of focus\nbehind it. A slow, subtle camera move reveals the bottle's material\nand metallic details. Finish with a steady, sharp product shot held\nfor the final two seconds.\n\nPhotorealistic luxury beauty advertising, forest-green, pale stone\nand soft silver palette. Natural skin texture, realistic sunlight,\nelegant and restrained movement. Preserve the woman's identity,\noutfit and the bottle design across all shots. Keep the original\nGREENDALE and Queen Forest inscriptions.\nOne bottle per shot, cap attached throughout. No spraying, no\nopening, no additional products, no floating objects, no magical\ntransformation, no subtitles or added graphic text.\n\nAudio: soft cinematic strings, a few delicate wooden flute notes,\nsubtle leaves rustling and distant forest birds. No speech, no\nsinging. End with a gentle musical resolution."
+      ],
+      "widgets_values_named": {
+        "text": "Create a 15-second cinematic luxury perfume commercial in horizontal\n16:9, with three elegant shots.\n\nREFERENCES:\n@Image1 defines the exact perfume bottle, cap, materials, colors\nand label. If it contains several panels, use them as references\nfor one physical product; do not reproduce the reference sheet.\n@Image2 defines the adult elven woman's facial identity, hairstyle\nand subtly pointed ears.\n@Image3 defines her outfit and body proportions.\n@Image4 defines the location.\n\n0–5 seconds:\nIn the forest pavilion from @Image4, the woman stands beside a pale\nstone display pedestal. The closed perfume bottle rests on it.\nFiltered sunlight creates soft patterns across the architecture.\nMedium shot with a slow camera push-in. She gently turns her head\ntoward the camera, with a calm, confident expression. Leaves move\nslightly in the background.\n\n5–10 seconds:\nCut to a closer beauty shot. She holds the same closed bottle\ndelicately at upper-chest height, slightly beside her face. The\nfront label faces the camera, unobstructed by her fingers.\nShe looks directly into the lens, then gives a restrained smile.\nKeep her hands relaxed, the gesture minimal and the bottle steady.\n\n10–15 seconds:\nCut to a hero close-up of the same closed bottle on the pale stone\npedestal. Ferns and the ancient forest remain softly out of focus\nbehind it. A slow, subtle camera move reveals the bottle's material\nand metallic details. Finish with a steady, sharp product shot held\nfor the final two seconds.\n\nPhotorealistic luxury beauty advertising, forest-green, pale stone\nand soft silver palette. Natural skin texture, realistic sunlight,\nelegant and restrained movement. Preserve the woman's identity,\noutfit and the bottle design across all shots. Keep the original\nGREENDALE and Queen Forest inscriptions.\nOne bottle per shot, cap attached throughout. No spraying, no\nopening, no additional products, no floating objects, no magical\ntransformation, no subtitles or added graphic text.\n\nAudio: soft cinematic strings, a few delicate wooden flute notes,\nsubtle leaves rustling and distant forest birds. No speech, no\nsinging. End with a gentle musical resolution."
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    }
+  ],
+  "links": [
+    [
+      11,
+      16,
+      0,
+      17,
+      0,
+      "VIDEO"
+    ],
+    [
+      21,
+      22,
+      0,
+      16,
+      0,
+      "IMAGE"
+    ],
+    [
+      22,
+      21,
+      0,
+      16,
+      1,
+      "IMAGE"
+    ],
+    [
+      24,
+      23,
+      0,
+      16,
+      2,
+      "IMAGE"
+    ],
+    [
+      25,
+      20,
+      0,
+      16,
+      3,
+      "IMAGE"
+    ],
+    [
+      30,
+      29,
+      0,
+      30,
+      0,
+      "VIDEO"
+    ],
+    [
+      26,
+      26,
+      0,
+      29,
+      0,
+      "IMAGE"
+    ],
+    [
+      29,
+      31,
+      0,
+      29,
+      1,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "ANIMATION SCENE COSMETIQUE COMPLETE",
+      "bounding": [
+        -3882.8974599763574,
+        4876.825514503903,
+        4031.4782302651906,
+        2433.601069760981
+      ],
+      "color": "#A88",
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "ANIMATION SEULEMENT SUR PRODUIT",
+      "bounding": [
+        423.202862939634,
+        5024.830858871682,
+        3696.4728007479166,
+        1976.1359928571983
+      ],
+      "color": "#88A",
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.2940834937055233,
+      "offset": [
+        5234.343056930172,
+        -3253.7051896454755
+      ]
+    },
+    "frontendVersion": "1.55.18",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true,
+    "ue_links": [],
+    "links_added_by_ue": []
+  },
+  "extensions": {
+    "seed_widgets": {
+      "16": 7
+    }
+  },
+  "version": 0.4
+}

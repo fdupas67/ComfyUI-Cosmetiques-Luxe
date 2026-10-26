@@ -1,0 +1,2437 @@
+{
+  "id": "554fd051-7173-46dd-bc0d-509c8fc17812",
+  "revision": 0,
+  "last_node_id": 65,
+  "last_link_id": 87,
+  "nodes": [
+    {
+      "id": 2,
+      "type": "OpenAIGPTImageNodeV2",
+      "pos": [
+        10400.423382107387,
+        2972.0893978569675
+      ],
+      "size": [
+        500.6019450517324,
+        370
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 15
+        },
+        {
+          "name": "model.images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "model.mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "OpenAIGPTImageNodeV2",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "",
+        "gpt-image-2.5-flare",
+        "2048x2048",
+        1024,
+        1024,
+        "auto",
+        "high",
+        1,
+        1336688702,
+        "randomize"
+      ],
+      "widgets_values_named": {
+        "prompt": "",
+        "model": "gpt-image-2.5-flare",
+        "model.size": "2048x2048",
+        "model.custom_width": 1024,
+        "model.custom_height": 1024,
+        "model.background": "auto",
+        "model.quality": "high",
+        "n": 1,
+        "seed": 1336688702,
+        "control_after_generate": "randomize"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 3,
+      "type": "SaveImage",
+      "pos": [
+        10976.978441214002,
+        2968.9047341318997
+      ],
+      "size": [
+        735.4861449882956,
+        542.72071140262
+      ],
+      "flags": {},
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 2
+        },
+        {
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": 16
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "ComfyUI"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "ComfyUI"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 11,
+      "type": "MarkdownNote",
+      "pos": [
+        9040.666534830867,
+        2870.936769032077
+      ],
+      "size": [
+        652.3347311721627,
+        864.8472368930479
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "# Cosmétiques Luxe — aide rapide\n\nLes nodes préparent les prompts. Le générateur relié crée les images ; Save Image les enregistre.\n\n## Produit\n\n1. Choisir univers, produit, plan, marque et nom.\n2. Ajuster palette et silhouette ; les champs libres prennent la priorité.\n3. Relier `prompt` au générateur et son image à Save Image.\n4. Relier `filename_prefix` au préfixe de Save Image.\n5. Régler les dimensions sur le générateur. `ratio` ne les modifie pas.\n\n`negative` ne se branche que si le générateur et le workflow le prennent en charge. `gamme_id` est un identifiant textuel, pas un verrou visuel.\n\n## Gamme\n\nUne ligne par produit : `Parfum | Black Swan`.\n\n- `prompts` : toutes les descriptions dans un seul texte, sans exécution automatique en lot.\n- `prompt_index` : un produit choisi avec `index`, à partir de 1.\n- `filename_index` : le nom du produit sélectionné.\n- `group_prompt` : une composition guidée par les images de référence, sans les noms individuels de la liste dans ce prompt.\n- `count` et `ignored` : contrôler les produits retenus et les types non reconnus.\n\nLe workflow fourni utilise `group_prompt` : Index ne sélectionne pas l'image à générer dans cette branche. Pour une collection, utiliser un préfixe d'enregistrement comme `NOCTURIA-Gamme`.\n\n## Références et corrections\n\nLe groupe « CREER PLANCHE PRODUITS » fonctionne avec son propre prompt et des Load Image. Vérifier le nombre et l'ordre des connexions : le prompt exporté mentionne six images mais quatre seulement sont branchées.\n\nPour une retouche, charger l'image retenue, demander une modification précise et vérifier le masque s'il est connecté. Contrôler les inscriptions, les contenants et le reste de l'image après correction.\n\n## Avant un rendu\n\nCharger vos propres références, vérifier les nodes manquants, activer la branche utile, contrôler les accès et crédits du générateur, le format et le préfixe de sortie. Les références nommées dans l'export ne sont pas embarquées dans les JSON.\n\nManuel complet : `docs/manuel.md` ou `docs/manuel.html` dans le paquet.\n\nFranck Dupas — Franck D Digital AI. Voir LICENSE.\n"
+      ],
+      "widgets_values_named": {
+        "text": "# 🥀 NOCTURIA — Cosmétiques Luxe\n\n*A darker kind of beauty* · Node ComfyUI\n\nGénérateur de prompts pour visuels produits cosmétiques de luxe.\nRendu **toujours photoréaliste** ; l'univers pilote la structure, la couleur et la silhouette se règlent à part.\n\n> 💡 Pose un node **Load Image** à côté de cette note et charge `assets/NOCTURIA-Eau-de-Parfum.png` pour afficher le flacon.\n\n---\n\n## 🎛️ Nœud « Produit » — les champs\n\n- **univers** — Gothique, Féérique, Elfique… pilote matières, lumière, motifs, décor.\n- **produit** — Parfum, rouge, vernis, fard… définit la forme et la mécanique ouvert / fermé.\n- **plan** — Héro fermé · Ouvert avec applicateur · Planche 4 vues · Groupe · Swatch.\n- **marque** + **nom_produit** — texte imprimé sur le pack (entre guillemets) ; alimente aussi le nom de fichier.\n- **palette** *(+ couleur_primaire / couleur_secondaire)* — duo accordé (rouge sang & or, pourpre & argent…). Les champs libres surchargent. Le métal suit la 2ᵉ couleur.\n- **silhouette** *(+ silhouette_libre)* — forme du contenant (élancée, cœur, obélisque…).\n- **ratio** — 3:4 · 9:16 · 16:9 · 1:1. C'est un **indice de cadrage** ajouté au prompt (ex. « vertical portrait »). Il guide la composition, mais **ne fixe pas** la taille : règle les pixels sur ton générateur (`size` / `custom_width` / `custom_height`).\n\n## 📤 Sorties\n\n- **prompt** — à brancher sur ton générateur d'image (GPT Image 2.5, Nano Banana, SD, Flux…).\n- **negative** — à brancher **seulement** sur les modèles de diffusion (SD, SDXL, Flux). Inutile avec GPT Image 2.5 ou Nano Banana, qui n'ont pas de prompt négatif — tu laisses la sortie non connectée.\n- **filename_prefix** — ex. `NOCTURIA-Black-Swan-Perfume`, à relier au Save Image. Astuce: Si tu relies filename_prefix à un node \"Save text\" tu verras apparaître le prompt complet sous forme de texte et le modifier comme tu le veux. Et de plus il t'enregistrera ce prompt sous forme de texte.\"\n- **gamme_id** — identifiant de collection.\n\n---\n\n## 📦 Nœud « Gamme »\n\nListe tes produits (un par ligne, nom optionnel après `|`). Les noms tolèrent casse, accents et petites fautes de frappe. Sorties en plus :\n\n- **prompt_index / filename_index** — sortent **un seul** produit, choisi par le champ `index` (1 = premier). Change l'index, relance → produit suivant.\n- **group_prompt** — pour le plan de groupe final.\n\n> 🖼️ **Plan de groupe :** rends d'abord chaque produit, charge-les en **Load Image**, puis lance `group_prompt` — il référence les images (@Image 1..N) au lieu de les redessiner, pour un plan fidèle à tes packs.\n\n---\n\n*Créé par **Franck Dupas** · Franck D Digital AI · Licence MIT*\n"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 13,
+      "type": "LoadImage",
+      "pos": [
+        8509.070191294892,
+        2870.936769032077
+      ],
+      "size": [
+        522.3732975752764,
+        867.6993280309448
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": null
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "NOCTURIA-Eau-de-Parfum.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "NOCTURIA-Eau-de-Parfum.png",
+        "upload": "image"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 14,
+      "type": "CosmeticsLuxePrompt",
+      "pos": [
+        9872.590194987211,
+        2962.5354066817636
+      ],
+      "size": [
+        428.1996464781936,
+        436.99582624659115
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "links": [
+            15,
+            32
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "gamme_id",
+          "type": "STRING",
+          "links": []
+        },
+        {
+          "name": "filename_prefix",
+          "type": "STRING",
+          "links": [
+            16,
+            31
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CosmeticsLuxePrompt",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "Elfique",
+        "Parfum",
+        "Héro fermé",
+        "16:9",
+        "GREENDALE",
+        "Forrest Queen",
+        "Signature de l'univers",
+        "",
+        "",
+        "Sphère / orbe",
+        ""
+      ],
+      "widgets_values_named": {
+        "univers": "Elfique",
+        "produit": "Parfum",
+        "plan": "Héro fermé",
+        "ratio": "16:9",
+        "marque": "GREENDALE",
+        "nom_produit": "Forrest Queen",
+        "palette": "Signature de l'univers",
+        "couleur_primaire": "",
+        "couleur_secondaire": "",
+        "silhouette": "Sphère / orbe",
+        "silhouette_libre": ""
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 22,
+      "type": "OpenAIGPTImageNodeV2",
+      "pos": [
+        9873.03885347412,
+        4154.909150266741
+      ],
+      "size": [
+        628.1648086397672,
+        675.1105879604593
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "model.images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "model.mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            25
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "OpenAIGPTImageNodeV2",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "Photoreal luxury fragrance campaign, medium waist-up shot, 85mm portrait lens, shallow depth of field. A gothic muse: porcelain-pale skin, long raven-black hair, deep oxblood lips, smoky dark eyes; she wears a black-and-bordeaux velvet gown with gold filigree embroidery and a delicate ruby choker. Setting: black veined marble, dark bordeaux velvet drapes, a black swan sculpture and a single red rose behind her, candlelight and faint smoke. Chiaroscuro lighting, single hard side light, cold moonlight rim. Palette of deep blood red, antique gold and black. She looks straight at camera, serene and commanding. Cinematic grading: deep blacks, oxblood midtones, antique-gold highlights. Wide horizontal 16:9 composition. ",
+        "gpt-image-2.5-flare",
+        "3840x2160",
+        1024,
+        1024,
+        "auto",
+        "high",
+        1,
+        2072863936,
+        "randomize"
+      ],
+      "widgets_values_named": {
+        "prompt": "Photoreal luxury fragrance campaign, medium waist-up shot, 85mm portrait lens, shallow depth of field. A gothic muse: porcelain-pale skin, long raven-black hair, deep oxblood lips, smoky dark eyes; she wears a black-and-bordeaux velvet gown with gold filigree embroidery and a delicate ruby choker. Setting: black veined marble, dark bordeaux velvet drapes, a black swan sculpture and a single red rose behind her, candlelight and faint smoke. Chiaroscuro lighting, single hard side light, cold moonlight rim. Palette of deep blood red, antique gold and black. She looks straight at camera, serene and commanding. Cinematic grading: deep blacks, oxblood midtones, antique-gold highlights. Wide horizontal 16:9 composition. ",
+        "model": "gpt-image-2.5-flare",
+        "model.size": "3840x2160",
+        "model.custom_width": 1024,
+        "model.custom_height": 1024,
+        "model.background": "auto",
+        "model.quality": "high",
+        "n": 1,
+        "seed": 2072863936,
+        "control_after_generate": "randomize"
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 23,
+      "type": "SaveImage",
+      "pos": [
+        10530.70319815547,
+        4153.075460151787
+      ],
+      "size": [
+        1216.5904815635804,
+        681.5415935826463
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 25
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "Gothique_W"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Gothique_W"
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 25,
+      "type": "Note",
+      "pos": [
+        8292.789321367234,
+        3846.575119526153
+      ],
+      "size": [
+        422.22914732945173,
+        341.68538640184306
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Egérie Gothique avec parfum en Référence image_1",
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Photoreal luxury fragrance campaign, medium waist-up shot, 85mm portrait lens, shallow depth of field. A gothic muse: porcelain-pale skin, long raven-black hair, deep oxblood lips, smoky dark eyes; she wears a black-and-bordeaux velvet gown with gold filigree embroidery and a delicate ruby choker. She presents the NOCTURIA \"Black Swan\" perfume — the faceted ruby crystal bottle caged in gold gothic filigree with its crowned red-velvet-and-gold cap — held at chest height, exactly as shown in the reference image (@Image 1), label legible. Setting: black veined marble, dark bordeaux velvet drapes, a black swan sculpture and a single red rose behind her, candlelight and faint smoke. Chiaroscuro lighting, single hard side light, cold moonlight rim. Palette of deep blood red, antique gold and black. She looks straight at camera, serene and commanding. Cinematic grading: deep blacks, oxblood midtones, antique-gold highlights. Wide horizontal 16:9 composition."
+      ],
+      "widgets_values_named": {
+        "text": "Photoreal luxury fragrance campaign, medium waist-up shot, 85mm portrait lens, shallow depth of field. A gothic muse: porcelain-pale skin, long raven-black hair, deep oxblood lips, smoky dark eyes; she wears a black-and-bordeaux velvet gown with gold filigree embroidery and a delicate ruby choker. She presents the NOCTURIA \"Black Swan\" perfume — the faceted ruby crystal bottle caged in gold gothic filigree with its crowned red-velvet-and-gold cap — held at chest height, exactly as shown in the reference image (@Image 1), label legible. Setting: black veined marble, dark bordeaux velvet drapes, a black swan sculpture and a single red rose behind her, candlelight and faint smoke. Chiaroscuro lighting, single hard side light, cold moonlight rim. Palette of deep blood red, antique gold and black. She looks straight at camera, serene and commanding. Cinematic grading: deep blacks, oxblood midtones, antique-gold highlights. Wide horizontal 16:9 composition."
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 26,
+      "type": "Note",
+      "pos": [
+        8762.210758215537,
+        3846.575119526153
+      ],
+      "size": [
+        422.22914732945173,
+        341.68538640184306
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Egérie Féérique",
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Photoreal luxury fragrance campaign, medium waist-up shot, 85mm portrait lens, shallow depth of field. A fairy muse: luminous dewy skin, rose-gold hair braided with tiny blossoms and pearls, soft pink lips, a gentle smile; she wears a flowing pastel-pink gown of sheer layers and gold filigree, with delicate translucent iridescent fairy wings catching the light. She presents the FAIRYTALE \"Rose Lilly\" perfume — the pink faceted crystal bottle with gold filigree, its pink-gem crown cap and small fairy wings — held at chest height, exactly as shown in the reference image (@Image 1), label legible. Setting: an enchanted glade on a mother-of-pearl shell, pink roses and moss, floating petals and pearls, rosy mist, glowing golden particles, a dreamy golden castle bokeh behind. Soft diffused light, glowing halos. Palette of powder pink, pale gold and iridescent glass. She looks at camera, tender and dreamy. Bright airy pastel grading with a warm golden glow and gentle bloom. Wide horizontal 16:9 composition."
+      ],
+      "widgets_values_named": {
+        "text": "Photoreal luxury fragrance campaign, medium waist-up shot, 85mm portrait lens, shallow depth of field. A fairy muse: luminous dewy skin, rose-gold hair braided with tiny blossoms and pearls, soft pink lips, a gentle smile; she wears a flowing pastel-pink gown of sheer layers and gold filigree, with delicate translucent iridescent fairy wings catching the light. She presents the FAIRYTALE \"Rose Lilly\" perfume — the pink faceted crystal bottle with gold filigree, its pink-gem crown cap and small fairy wings — held at chest height, exactly as shown in the reference image (@Image 1), label legible. Setting: an enchanted glade on a mother-of-pearl shell, pink roses and moss, floating petals and pearls, rosy mist, glowing golden particles, a dreamy golden castle bokeh behind. Soft diffused light, glowing halos. Palette of powder pink, pale gold and iridescent glass. She looks at camera, tender and dreamy. Bright airy pastel grading with a warm golden glow and gentle bloom. Wide horizontal 16:9 composition."
+      },
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 27,
+      "type": "Note",
+      "pos": [
+        9235.007135435564,
+        3846.575119526153
+      ],
+      "size": [
+        422.22914732945173,
+        341.68538640184306
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Egérie Elfique",
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Photoreal luxury fragrance campaign, medium waist-up shot, 85mm portrait lens, shallow depth of field. An elven queen muse: graceful features, gently pointed ears, long braided hair with silver and gold leaf ornaments, a delicate gold circlet, calm emerald eyes; she wears an emerald-green gown embroidered with gold leaf and vine motifs, bronze and silver accents. She presents the GREENDALE \"Queen Forest\" perfume — the emerald faceted crystal bottle with gold leaf filigree and its crystal-leaf crown cap — held at chest height, exactly as shown in the reference image (@Image 1), label legible. Setting: an enchanted forest, mossy stone and foliage, a carved stone pedestal with engraved runes, filtered sun rays streaming through the canopy. Dappled forest light. Palette of deep forest green, gold and silver. She looks at camera, serene and noble. Cool green grading, gold and silver highlights, soft forest haze. Wide horizontal 16:9 composition."
+      ],
+      "widgets_values_named": {
+        "text": "Photoreal luxury fragrance campaign, medium waist-up shot, 85mm portrait lens, shallow depth of field. An elven queen muse: graceful features, gently pointed ears, long braided hair with silver and gold leaf ornaments, a delicate gold circlet, calm emerald eyes; she wears an emerald-green gown embroidered with gold leaf and vine motifs, bronze and silver accents. She presents the GREENDALE \"Queen Forest\" perfume — the emerald faceted crystal bottle with gold leaf filigree and its crystal-leaf crown cap — held at chest height, exactly as shown in the reference image (@Image 1), label legible. Setting: an enchanted forest, mossy stone and foliage, a carved stone pedestal with engraved runes, filtered sun rays streaming through the canopy. Dappled forest light. Palette of deep forest green, gold and silver. She looks at camera, serene and noble. Cool green grading, gold and silver highlights, soft forest haze. Wide horizontal 16:9 composition."
+      },
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 32,
+      "type": "SaveText",
+      "pos": [
+        10400.584748999541,
+        3406.274422950438
+      ],
+      "size": [
+        500.8890891923111,
+        356.01406679617867
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 32
+        },
+        {
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": 31
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveText",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "ComfyUI",
+        "txt"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "ComfyUI",
+        "format": "txt"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 33,
+      "type": "CosmeticsLuxeGamme",
+      "pos": [
+        12089.369673392413,
+        3043.1669356766256
+      ],
+      "size": [
+        408.8984492063937,
+        580.7588387203177
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "prompts",
+          "type": "STRING",
+          "links": []
+        },
+        {
+          "name": "group_prompt",
+          "type": "STRING",
+          "links": [
+            76,
+            77
+          ]
+        },
+        {
+          "name": "filename_prefixes",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "gamme_id",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "count",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "prompt_index",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "filename_index",
+          "type": "STRING",
+          "links": [
+            36,
+            39
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CosmeticsLuxeGamme",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "Gothique",
+        "Ouvert avec applicateur",
+        "16:9",
+        "NOCTURIA",
+        "Parfum | Black Swan\nRouge liquide (doe-foot) | Crimson Veil\nVernis à ongles | Blood Moon\nRouge à lèvre | Bloody Lips\n",
+        true,
+        "Signature de l'univers",
+        "",
+        "",
+        "Signature du produit",
+        "",
+        1
+      ],
+      "widgets_values_named": {
+        "univers": "Gothique",
+        "plan_produits": "Ouvert avec applicateur",
+        "ratio": "16:9",
+        "marque": "NOCTURIA",
+        "produits": "Parfum | Black Swan\nRouge liquide (doe-foot) | Crimson Veil\nVernis à ongles | Blood Moon\nRouge à lèvre | Bloody Lips\n",
+        "auto_nom": true,
+        "palette": "Signature de l'univers",
+        "couleur_primaire": "",
+        "couleur_secondaire": "",
+        "silhouette": "Signature du produit",
+        "silhouette_libre": "",
+        "index": 1
+      },
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 35,
+      "type": "OpenAIGPTImageNodeV2",
+      "pos": [
+        13432.296435209613,
+        3068.067655380961
+      ],
+      "size": [
+        520.2214656356846,
+        450
+      ],
+      "flags": {},
+      "order": 27,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 77
+        },
+        {
+          "name": "model.images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 72
+        },
+        {
+          "name": "model.images.image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 73
+        },
+        {
+          "name": "model.images.image_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 74
+        },
+        {
+          "name": "model.images.image_4",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 75
+        },
+        {
+          "name": "model.images.image_5",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "model.mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            35
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "OpenAIGPTImageNodeV2",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "",
+        "gpt-image-2.5-flare",
+        "3840x2160",
+        1024,
+        1024,
+        "auto",
+        "high",
+        1,
+        1967507086,
+        "randomize"
+      ],
+      "widgets_values_named": {
+        "prompt": "",
+        "model": "gpt-image-2.5-flare",
+        "model.size": "3840x2160",
+        "model.custom_width": 1024,
+        "model.custom_height": 1024,
+        "model.background": "auto",
+        "model.quality": "high",
+        "n": 1,
+        "seed": 1967507086,
+        "control_after_generate": "randomize"
+      },
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 36,
+      "type": "SaveImage",
+      "pos": [
+        14301.263748415167,
+        3055.4447832491433
+      ],
+      "size": [
+        1001.8340047254987,
+        494.05620097765814
+      ],
+      "flags": {},
+      "order": 33,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 35
+        },
+        {
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": 36
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "ComfyUI"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "ComfyUI"
+      },
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 37,
+      "type": "SaveText",
+      "pos": [
+        13510.533476634424,
+        3680.638523584843
+      ],
+      "size": [
+        731.3397586989413,
+        500.76405487671127
+      ],
+      "flags": {},
+      "order": 26,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 76
+        },
+        {
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": 39
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveText",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "ComfyUI",
+        "txt"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "ComfyUI",
+        "format": "txt"
+      },
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 38,
+      "type": "LoadImage",
+      "pos": [
+        12089.583725511633,
+        3713.3216536813725
+      ],
+      "size": [
+        352.7390873239874,
+        330.95524669077486
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            72
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "NOCTURIA-Black-Swan-Perfume_00005_.png [output]",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "NOCTURIA-Black-Swan-Perfume_00005_.png [output]",
+        "upload": "image"
+      },
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 39,
+      "type": "LoadImage",
+      "pos": [
+        12452.836111807705,
+        3715.5557176556476
+      ],
+      "size": [
+        322.0078906703311,
+        326
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            73
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "NOCTURIA-Crimson-Veil-Lipstick_00002_.png [output]",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "NOCTURIA-Crimson-Veil-Lipstick_00002_.png [output]",
+        "upload": "image"
+      },
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 40,
+      "type": "LoadImage",
+      "pos": [
+        12782.096599038781,
+        3709.493460768755
+      ],
+      "size": [
+        337.90321008761566,
+        326
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            74
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "NOCTURIA-Blood-Moon-Nail-Lacquer_00002_.png [output]",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "NOCTURIA-Blood-Moon-Nail-Lacquer_00002_.png [output]",
+        "upload": "image"
+      },
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 41,
+      "type": "LoadImage",
+      "pos": [
+        13129.088472887788,
+        3710.540856736685
+      ],
+      "size": [
+        319.88842419741377,
+        326
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            75
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "NOCTURIA-Bloody-Lips-Lipstick_00002_.png [output]",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "NOCTURIA-Bloody-Lips-Lipstick_00002_.png [output]",
+        "upload": "image"
+      },
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 42,
+      "type": "OpenAIGPTImageNodeV2",
+      "pos": [
+        16623.563008075955,
+        2980.9078191296353
+      ],
+      "size": [
+        749.7946357616347,
+        1043.8045003531533
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "model.images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 45
+        },
+        {
+          "name": "model.images.image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "model.images.image_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "model.mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 46
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            44
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "OpenAIGPTImageNodeV2",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "À partir de l’image de référence, retire le bouchon du flacon de parfum et pose ce même bouchon à côté, sur la surface, avec une taille et une perspective cohérentes. \n\nLe vaporisateur doit être visible sur le col du flacon.\nIl doit y avoir un seul flacon et un seul bouchon dans l’image.\n\nConserve le design du flacon, ses proportions, ses matériaux, ses couleurs, ses ornements et toutes ses inscriptions.\nPréserve le décor, le cadrage et l’éclairage. Ajoute une ombre de contact naturelle sous le bouchon posé.",
+        "gpt-image-2.5-flare",
+        "3840x2160",
+        1024,
+        1024,
+        "auto",
+        "high",
+        1,
+        381984281,
+        "randomize"
+      ],
+      "widgets_values_named": {
+        "prompt": "À partir de l’image de référence, retire le bouchon du flacon de parfum et pose ce même bouchon à côté, sur la surface, avec une taille et une perspective cohérentes. \n\nLe vaporisateur doit être visible sur le col du flacon.\nIl doit y avoir un seul flacon et un seul bouchon dans l’image.\n\nConserve le design du flacon, ses proportions, ses matériaux, ses couleurs, ses ornements et toutes ses inscriptions.\nPréserve le décor, le cadrage et l’éclairage. Ajoute une ombre de contact naturelle sous le bouchon posé.",
+        "model": "gpt-image-2.5-flare",
+        "model.size": "3840x2160",
+        "model.custom_width": 1024,
+        "model.custom_height": 1024,
+        "model.background": "auto",
+        "model.quality": "high",
+        "n": 1,
+        "seed": 381984281,
+        "control_after_generate": "randomize"
+      },
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 43,
+      "type": "SaveImage",
+      "pos": [
+        17419.781455943583,
+        2959.908484551928
+      ],
+      "size": [
+        1567.429310245605,
+        1100.554858375428
+      ],
+      "flags": {},
+      "order": 34,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 44
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "ComfyUI"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "ComfyUI"
+      },
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 44,
+      "type": "LoadImage",
+      "pos": [
+        15470.990679065006,
+        2992.4759384410213
+      ],
+      "size": [
+        1067.0156841474,
+        981.1485970947606
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            45
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            46
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        },
+        "image": "clipspace-painted-masked-1792861479351.png [input]"
+      },
+      "widgets_values": [
+        "NOCTURIA-Black-Swan-Perfume_00016_.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "NOCTURIA-Black-Swan-Perfume_00016_.png",
+        "upload": "image"
+      },
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 45,
+      "type": "LoadImage",
+      "pos": [
+        9880.107659157002,
+        3446.246811480583
+      ],
+      "size": [
+        412.3207602534203,
+        326
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "NOCTURIA-Moonlight-Elixir-Serum_00002_.png [output]",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "NOCTURIA-Moonlight-Elixir-Serum_00002_.png [output]",
+        "upload": "image"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 47,
+      "type": "OpenAIGPTImageNodeV2",
+      "pos": [
+        10386.68655057712,
+        5918.895756789363
+      ],
+      "size": [
+        426.62713138739855,
+        493.95307800528644
+      ],
+      "flags": {},
+      "order": 29,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "model.images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 51
+        },
+        {
+          "name": "model.images.image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "model.mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            49
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "OpenAIGPTImageNodeV2",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "Améliore la qualité photographique de cette image afin qu'elle ait une qualité cinématographique et un éclairage cinématographique.",
+        "gpt-image-2.5-flare",
+        "3840x2160",
+        1024,
+        1024,
+        "auto",
+        "high",
+        1,
+        1270085811,
+        "randomize"
+      ],
+      "widgets_values_named": {
+        "prompt": "Améliore la qualité photographique de cette image afin qu'elle ait une qualité cinématographique et un éclairage cinématographique.",
+        "model": "gpt-image-2.5-flare",
+        "model.size": "3840x2160",
+        "model.custom_width": 1024,
+        "model.custom_height": 1024,
+        "model.background": "auto",
+        "model.quality": "high",
+        "n": 1,
+        "seed": 1270085811,
+        "control_after_generate": "randomize"
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 48,
+      "type": "SaveImage",
+      "pos": [
+        10877.520317557814,
+        5909.909804963445
+      ],
+      "size": [
+        670.6441270359628,
+        546.7882567223864
+      ],
+      "flags": {},
+      "order": 35,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 49
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "Greendale"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Greendale"
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 49,
+      "type": "LoadImage",
+      "pos": [
+        9967.466425652874,
+        5949.734201424305
+      ],
+      "size": [
+        282.798828125,
+        314
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            51
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "Greendale_00011_.png [output]",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "Greendale_00011_.png [output]",
+        "upload": "image"
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 50,
+      "type": "LoadImage",
+      "pos": [
+        9933.810365745896,
+        5067.72838226448
+      ],
+      "size": [
+        282.798828125,
+        314.00000000000045
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            78
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "FairyClothe_00001_.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "FairyClothe_00001_.png",
+        "upload": "image"
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 51,
+      "type": "OpenAIGPTImageNodeV2",
+      "pos": [
+        10353.931948333451,
+        5071.743014322312
+      ],
+      "size": [
+        603.7534356359392,
+        503.9342310374086
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "model.images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 78
+        },
+        {
+          "name": "model.images.image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "model.mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            79
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "OpenAIGPTImageNodeV2",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "Photoreal portrait of a distinguished gothic master of ceremonies, the host of a luxury cosmetics channel. A man in his forties, dark hair swept back with a touch of grey at the temples, a neatly trimmed short beard, warm intelligent eyes, a faint knowing smile, mouth closed, relaxed and confident. He wears a black velvet frock coat with antique-gold embroidery, a dark silk cravat held by a small ruby pin. Medium close-up, bust framing, facing the camera with direct eye contact, shoulders visible, both hands out of frame. Setting: a candlelit gothic study, dark bordeaux velvet drapes, black veined marble desk with a single ruby-red perfume bottle, soft smoke, bokeh candle flames behind him. Lighting: chiaroscuro mood, but his face is evenly lit by a warm key light — eyes and mouth clearly visible, soft fill, no harsh shadow across the mouth. Palette of deep black, blood red and antique gold. 85mm portrait lens, shallow depth of field, clean uncluttered background with depth, 4K, ultra-detailed. Wide horizontal 16:9 composition. Keep the identity of the character",
+        "gpt-image-2.5-flare",
+        "2048x1152",
+        1024,
+        1024,
+        "auto",
+        "high",
+        1,
+        2117638993,
+        "randomize"
+      ],
+      "widgets_values_named": {
+        "prompt": "Photoreal portrait of a distinguished gothic master of ceremonies, the host of a luxury cosmetics channel. A man in his forties, dark hair swept back with a touch of grey at the temples, a neatly trimmed short beard, warm intelligent eyes, a faint knowing smile, mouth closed, relaxed and confident. He wears a black velvet frock coat with antique-gold embroidery, a dark silk cravat held by a small ruby pin. Medium close-up, bust framing, facing the camera with direct eye contact, shoulders visible, both hands out of frame. Setting: a candlelit gothic study, dark bordeaux velvet drapes, black veined marble desk with a single ruby-red perfume bottle, soft smoke, bokeh candle flames behind him. Lighting: chiaroscuro mood, but his face is evenly lit by a warm key light — eyes and mouth clearly visible, soft fill, no harsh shadow across the mouth. Palette of deep black, blood red and antique gold. 85mm portrait lens, shallow depth of field, clean uncluttered background with depth, 4K, ultra-detailed. Wide horizontal 16:9 composition. Keep the identity of the character",
+        "model": "gpt-image-2.5-flare",
+        "model.size": "2048x1152",
+        "model.custom_width": 1024,
+        "model.custom_height": 1024,
+        "model.background": "auto",
+        "model.quality": "high",
+        "n": 1,
+        "seed": 2117638993,
+        "control_after_generate": "randomize"
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 52,
+      "type": "SaveImage",
+      "pos": [
+        11011.59619599629,
+        5072.028742171022
+      ],
+      "size": [
+        735.4861449882956,
+        542.72071140262
+      ],
+      "flags": {},
+      "order": 36,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 79
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "Clone"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Clone"
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 54,
+      "type": "Note",
+      "pos": [
+        8296.893610182979,
+        4253.659368400092
+      ],
+      "size": [
+        422.22914732945173,
+        341.68538640184306
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Egérie Gothique seul",
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Photoreal luxury fragrance campaign, medium waist-up shot, 85mm portrait lens, shallow depth of field. A gothic muse: porcelain-pale skin, long raven-black hair, deep oxblood lips, smoky dark eyes; she wears a black-and-bordeaux velvet gown with gold filigree embroidery and a delicate ruby choker. Setting: black veined marble, dark bordeaux velvet drapes, a black swan sculpture and a single red rose behind her, candlelight and faint smoke. Chiaroscuro lighting, single hard side light, cold moonlight rim. Palette of deep blood red, antique gold and black. She looks straight at camera, serene and commanding. Cinematic grading: deep blacks, oxblood midtones, antique-gold highlights. Wide horizontal 16:9 composition."
+      ],
+      "widgets_values_named": {
+        "text": "Photoreal luxury fragrance campaign, medium waist-up shot, 85mm portrait lens, shallow depth of field. A gothic muse: porcelain-pale skin, long raven-black hair, deep oxblood lips, smoky dark eyes; she wears a black-and-bordeaux velvet gown with gold filigree embroidery and a delicate ruby choker. Setting: black veined marble, dark bordeaux velvet drapes, a black swan sculpture and a single red rose behind her, candlelight and faint smoke. Chiaroscuro lighting, single hard side light, cold moonlight rim. Palette of deep blood red, antique gold and black. She looks straight at camera, serene and commanding. Cinematic grading: deep blacks, oxblood midtones, antique-gold highlights. Wide horizontal 16:9 composition."
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 55,
+      "type": "LoadImage",
+      "pos": [
+        12117.099082402487,
+        4559.333267263475
+      ],
+      "size": [
+        485.58477740447233,
+        477.0367290709946
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            81
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        },
+        "image": "clipspace-painted-masked-1792861479351.png [input]"
+      },
+      "widgets_values": [
+        "NOCTURIA-Black-Swan-Perfume_00016_.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "NOCTURIA-Black-Swan-Perfume_00016_.png",
+        "upload": "image"
+      },
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 56,
+      "type": "OpenAIGPTImageNodeV2",
+      "pos": [
+        14132.378573758022,
+        4550.329747672022
+      ],
+      "size": [
+        749.7946357616347,
+        1043.8045003531533
+      ],
+      "flags": {},
+      "order": 31,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "model.images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 81
+        },
+        {
+          "name": "model.images.image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 83
+        },
+        {
+          "name": "model.images.image_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 84
+        },
+        {
+          "name": "model.images.image_4",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 85
+        },
+        {
+          "name": "model.images.image_5",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "model.mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            82
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "OpenAIGPTImageNodeV2",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "Create a photorealistic luxury cosmetics collection image usingthe six supplied product references. Landscape format, 16:9.\n\nREFERENCE MAPPING:\n@Image1 — NOCTURIA “Black Swan”: perfume bottle.\n@Image2 — NOCTURIA “Blood Moon”: nail polish bottle.\n@Image3 — NOCTURIA “Bloody Lips”: lipstick.\n@Image4 — NOCTURIA “Crimson Veil”: liquid lipstick.\n@Image5 — NOCTURIA “Lunar Halo”: highlighter compact.\n@Image6 — NOCTURIA “Moonlight Elixir”: dropper serum.\n\nCreate one unified photographic scene containing exactly these six distinct products, each appearing once. Use the references\nas the source of truth for each product's design.\n\nPRODUCT FIDELITY:\nPreserve each container's individual silhouette, proportions, glass color, materials, decorative metalwork, gemstones, closure\nand label placement. Do not transfer details between products.\n\nKeep the perfume bottle distinct from the smaller nail polish and serum bottles. Keep the lipstick distinct from the liquid\nlipstick. Preserve the round highlighter compact and the serum's black dropper bulb.\n\nAll products remain closed, as shown in the references. Each cap stays attached to its own container. No loose caps,\nextra applicators, duplicated bottles or additional products. Omit the cardboard box visible in the nail polish reference.\n\nCOMPOSITION:\nArrange the six products as a refined luxury collection on polished black marble with subtle pale veining.\n\nPlace Black Swan near the center as the main visual anchor. Arrange the other five products around it, using shallow,\ndiscreet black marble risers where useful.\n\nShow every product fully, including its base and cap, with comfortable margins around the collection. Keep all front labels\nfacing the camera and unobstructed. Separate the silhouettes: no product should hide another product or its inscription.\n\nUse believable relative sizes: the nail polish is smaller than the perfume, the serum is a compact dropper bottle, and the two\nlip products are slender cosmetic containers. Do not make all products the same height.\n\nART DIRECTION:\nPreserve the NOCTURIA gothic luxury aesthetic: deep burgundy velvet in the background, ruby-red glass, antique gold ornaments,\nsubtle candlelight and a restrained cool rim light.\n\nUse controlled studio lighting to reveal the glass facets, metalwork and inscriptions. Keep reflections realistic and\ncontact shadows grounded. Keep any atmospheric haze behind the products, never over their labels.\n\nUse sufficient depth of field for all six products and their labels to remain sharp, with a softly blurred background.\n\nTEXT:\nPreserve the brand “NOCTURIA” on each product and reproduce these exact product names on their respective containers:\n“Black Swan”, “Blood Moon”, “Bloody Lips”, “Crimson Veil”,“Lunar Halo”, “Moonlight Elixir”.\n\nDo not swap, abbreviate or invent names. No added headline, captions, external labels, watermark or promotional text.\n\nFINAL IMAGE:\nA single cohesive luxury campaign photograph, not a collage, not a grid and not a screenshot of the reference images.\nExactly six products, six distinct designs, all fully visible.",
+        "gpt-image-2.5-flare",
+        "3840x2160",
+        1024,
+        1024,
+        "auto",
+        "high",
+        1,
+        1378260952,
+        "randomize"
+      ],
+      "widgets_values_named": {
+        "prompt": "Create a photorealistic luxury cosmetics collection image usingthe six supplied product references. Landscape format, 16:9.\n\nREFERENCE MAPPING:\n@Image1 — NOCTURIA “Black Swan”: perfume bottle.\n@Image2 — NOCTURIA “Blood Moon”: nail polish bottle.\n@Image3 — NOCTURIA “Bloody Lips”: lipstick.\n@Image4 — NOCTURIA “Crimson Veil”: liquid lipstick.\n@Image5 — NOCTURIA “Lunar Halo”: highlighter compact.\n@Image6 — NOCTURIA “Moonlight Elixir”: dropper serum.\n\nCreate one unified photographic scene containing exactly these six distinct products, each appearing once. Use the references\nas the source of truth for each product's design.\n\nPRODUCT FIDELITY:\nPreserve each container's individual silhouette, proportions, glass color, materials, decorative metalwork, gemstones, closure\nand label placement. Do not transfer details between products.\n\nKeep the perfume bottle distinct from the smaller nail polish and serum bottles. Keep the lipstick distinct from the liquid\nlipstick. Preserve the round highlighter compact and the serum's black dropper bulb.\n\nAll products remain closed, as shown in the references. Each cap stays attached to its own container. No loose caps,\nextra applicators, duplicated bottles or additional products. Omit the cardboard box visible in the nail polish reference.\n\nCOMPOSITION:\nArrange the six products as a refined luxury collection on polished black marble with subtle pale veining.\n\nPlace Black Swan near the center as the main visual anchor. Arrange the other five products around it, using shallow,\ndiscreet black marble risers where useful.\n\nShow every product fully, including its base and cap, with comfortable margins around the collection. Keep all front labels\nfacing the camera and unobstructed. Separate the silhouettes: no product should hide another product or its inscription.\n\nUse believable relative sizes: the nail polish is smaller than the perfume, the serum is a compact dropper bottle, and the two\nlip products are slender cosmetic containers. Do not make all products the same height.\n\nART DIRECTION:\nPreserve the NOCTURIA gothic luxury aesthetic: deep burgundy velvet in the background, ruby-red glass, antique gold ornaments,\nsubtle candlelight and a restrained cool rim light.\n\nUse controlled studio lighting to reveal the glass facets, metalwork and inscriptions. Keep reflections realistic and\ncontact shadows grounded. Keep any atmospheric haze behind the products, never over their labels.\n\nUse sufficient depth of field for all six products and their labels to remain sharp, with a softly blurred background.\n\nTEXT:\nPreserve the brand “NOCTURIA” on each product and reproduce these exact product names on their respective containers:\n“Black Swan”, “Blood Moon”, “Bloody Lips”, “Crimson Veil”,“Lunar Halo”, “Moonlight Elixir”.\n\nDo not swap, abbreviate or invent names. No added headline, captions, external labels, watermark or promotional text.\n\nFINAL IMAGE:\nA single cohesive luxury campaign photograph, not a collage, not a grid and not a screenshot of the reference images.\nExactly six products, six distinct designs, all fully visible.",
+        "model": "gpt-image-2.5-flare",
+        "model.size": "3840x2160",
+        "model.custom_width": 1024,
+        "model.custom_height": 1024,
+        "model.background": "auto",
+        "model.quality": "high",
+        "n": 1,
+        "seed": 1378260952,
+        "control_after_generate": "randomize"
+      },
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 57,
+      "type": "SaveImage",
+      "pos": [
+        14926.811675885743,
+        4541.677409802242
+      ],
+      "size": [
+        1930.8796650813274,
+        1277.736771178771
+      ],
+      "flags": {},
+      "order": 37,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 82
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        }
+      },
+      "widgets_values": [
+        "Ch07"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "Ch07"
+      },
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 61,
+      "type": "LoadImage",
+      "pos": [
+        12641.204730635494,
+        4563.288691484333
+      ],
+      "size": [
+        485.58477740447233,
+        477.0367290709946
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            83
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        },
+        "image": "clipspace-painted-masked-1792861479351.png [input]"
+      },
+      "widgets_values": [
+        "NOCTURIA-Blood-Moon-Nail-Lacquer_00002_.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "NOCTURIA-Blood-Moon-Nail-Lacquer_00002_.png",
+        "upload": "image"
+      },
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 62,
+      "type": "LoadImage",
+      "pos": [
+        13151.535566852355,
+        4568.417624260189
+      ],
+      "size": [
+        485.58477740447233,
+        477.0367290709946
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            84
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        },
+        "image": "clipspace-painted-masked-1792861479351.png [input]"
+      },
+      "widgets_values": [
+        "NOCTURIA-Bloody-Lips-Lipstick_00002_.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "NOCTURIA-Bloody-Lips-Lipstick_00002_.png",
+        "upload": "image"
+      },
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 63,
+      "type": "LoadImage",
+      "pos": [
+        12639.592803020267,
+        5103.219733193748
+      ],
+      "size": [
+        485.58477740447233,
+        477.0367290709946
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        },
+        "image": "clipspace-painted-masked-1792861479351.png [input]"
+      },
+      "widgets_values": [
+        "NOCTURIA-Lunar-Halo-Highlighter_00002_.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "NOCTURIA-Lunar-Halo-Highlighter_00002_.png",
+        "upload": "image"
+      },
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 64,
+      "type": "LoadImage",
+      "pos": [
+        13149.923639237128,
+        5108.348665969604
+      ],
+      "size": [
+        485.58477740447233,
+        477.0367290709946
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": []
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        },
+        "image": "clipspace-painted-masked-1792861479351.png [input]"
+      },
+      "widgets_values": [
+        "NOCTURIA-Moonlight-Elixir-Serum_00002_.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "NOCTURIA-Moonlight-Elixir-Serum_00002_.png",
+        "upload": "image"
+      },
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 65,
+      "type": "LoadImage",
+      "pos": [
+        12115.487154787259,
+        5099.26430897289
+      ],
+      "size": [
+        485.58477740447233,
+        477.0367290709946
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            85
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.8"
+        },
+        "image": "clipspace-painted-masked-1792861479351.png [input]"
+      },
+      "widgets_values": [
+        "NOCTURIA-Crimson-Veil-Liquid-Lipstick_00004_.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "NOCTURIA-Crimson-Veil-Liquid-Lipstick_00004_.png",
+        "upload": "image"
+      },
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    }
+  ],
+  "links": [
+    [
+      2,
+      2,
+      0,
+      3,
+      0,
+      "IMAGE"
+    ],
+    [
+      16,
+      14,
+      3,
+      3,
+      1,
+      "STRING"
+    ],
+    [
+      25,
+      22,
+      0,
+      23,
+      0,
+      "IMAGE"
+    ],
+    [
+      31,
+      14,
+      3,
+      32,
+      1,
+      "STRING"
+    ],
+    [
+      32,
+      14,
+      0,
+      32,
+      0,
+      "STRING"
+    ],
+    [
+      35,
+      35,
+      0,
+      36,
+      0,
+      "IMAGE"
+    ],
+    [
+      36,
+      33,
+      6,
+      36,
+      1,
+      "STRING"
+    ],
+    [
+      39,
+      33,
+      6,
+      37,
+      1,
+      "STRING"
+    ],
+    [
+      44,
+      42,
+      0,
+      43,
+      0,
+      "IMAGE"
+    ],
+    [
+      49,
+      47,
+      0,
+      48,
+      0,
+      "IMAGE"
+    ],
+    [
+      76,
+      33,
+      1,
+      37,
+      0,
+      "STRING"
+    ],
+    [
+      79,
+      51,
+      0,
+      52,
+      0,
+      "IMAGE"
+    ],
+    [
+      82,
+      56,
+      0,
+      57,
+      0,
+      "IMAGE"
+    ],
+    [
+      15,
+      14,
+      0,
+      2,
+      0,
+      "STRING"
+    ],
+    [
+      77,
+      33,
+      1,
+      35,
+      0,
+      "STRING"
+    ],
+    [
+      72,
+      38,
+      0,
+      35,
+      1,
+      "IMAGE"
+    ],
+    [
+      73,
+      39,
+      0,
+      35,
+      2,
+      "IMAGE"
+    ],
+    [
+      74,
+      40,
+      0,
+      35,
+      3,
+      "IMAGE"
+    ],
+    [
+      75,
+      41,
+      0,
+      35,
+      4,
+      "IMAGE"
+    ],
+    [
+      45,
+      44,
+      0,
+      42,
+      0,
+      "IMAGE"
+    ],
+    [
+      46,
+      44,
+      1,
+      42,
+      3,
+      "MASK"
+    ],
+    [
+      51,
+      49,
+      0,
+      47,
+      0,
+      "IMAGE"
+    ],
+    [
+      78,
+      50,
+      0,
+      51,
+      0,
+      "IMAGE"
+    ],
+    [
+      81,
+      55,
+      0,
+      56,
+      0,
+      "IMAGE"
+    ],
+    [
+      83,
+      61,
+      0,
+      56,
+      1,
+      "IMAGE"
+    ],
+    [
+      84,
+      62,
+      0,
+      56,
+      2,
+      "IMAGE"
+    ],
+    [
+      85,
+      65,
+      0,
+      56,
+      3,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "EGERIES",
+      "bounding": [
+        8268.801269527434,
+        3760.255761286506,
+        1422.3494316607812,
+        1182.1755861396045
+      ],
+      "color": "#88A",
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "CREATION DE PRODUITS COSMETIQUES AVEC NODE Cosmétiques Luxe - Produit",
+      "bounding": [
+        9838.119479583966,
+        2850.0650906165074,
+        1936.0634539240673,
+        1164.6045441175875
+      ],
+      "color": "#88A",
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "CREATION DE PRODUITS COSMETIQUES AVEC NODE Cosmétiques Luxe - Gamme",
+      "bounding": [
+        12034.466968699551,
+        2868.8564802889127,
+        3291.095011943682,
+        1472.1009197243861
+      ],
+      "color": "#8A8",
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "Corriger une photo",
+      "bounding": [
+        15435.602235844124,
+        2877.2142952244003,
+        3591.2281009842045,
+        1378.0193513383783
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 5,
+      "title": "CRÉER PERSONNAGE",
+      "bounding": [
+        9850.079612956077,
+        4059.0285180888936,
+        1921.5063545148387,
+        831.6497015720975
+      ],
+      "color": "#A88",
+      "flags": {}
+    },
+    {
+      "id": 6,
+      "title": "RETOUCHER PERSONNAGE",
+      "bounding": [
+        9856.226673640365,
+        4920.757951672592,
+        1921.5063545148387,
+        831.6497015720975
+      ],
+      "color": "#A88",
+      "flags": {}
+    },
+    {
+      "id": 7,
+      "title": "CREER ARRIERE-PLAN",
+      "bounding": [
+        9868.836925488973,
+        5789.814912270161,
+        1756.7630601287183,
+        781.8899922575292
+      ],
+      "color": "#b58b2a",
+      "flags": {}
+    },
+    {
+      "id": 8,
+      "title": "CREER PLANCHE PRODUITS",
+      "bounding": [
+        12081.710639181605,
+        4445.353842566768,
+        4832.534712463013,
+        1743.534467236318
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ue_links": [],
+    "ds": {
+      "scale": 0.3551152541729014,
+      "offset": [
+        -9008.096809045008,
+        -2297.429723155138
+      ]
+    },
+    "links_added_by_ue": [],
+    "frontendVersion": "1.55.18",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}

@@ -1,0 +1,239 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Manuel de Cosmétiques Luxe pour ComfyUI</title><style>body{margin:0;background:#f3f4f6;color:#232630;font:17px/1.65 system-ui,Segoe UI,sans-serif}header{background:#152d32;color:white;padding:32px max(24px,calc((100vw - 1000px)/2));}header small{letter-spacing:.12em}header p{font-size:24px;margin:8px 0}main{max-width:1000px;margin:28px auto;padding:44px 52px;background:white;border-radius:12px;box-shadow:0 4px 22px #0000000c}h1{font-size:34px;line-height:1.2}h2{font-size:25px;margin-top:52px;border-top:1px solid #dce3e5;padding-top:28px;color:#163e44;scroll-margin-top:20px}h3{font-size:20px;color:#264c52;margin-top:30px}a{color:#006775}nav{background:#eff5f4;padding:20px 28px;border-radius:8px}nav ol{columns:2;column-gap:30px;padding-left:22px}li{margin:7px 0}nav li{break-inside:avoid}code{font:14px/1.5 Consolas,monospace;background:#edf1f3;padding:2px 5px;border-radius:3px;overflow-wrap:anywhere}pre{padding:20px;background:#152d32;color:#edf8f6;border-radius:8px;overflow-x:auto;white-space:pre-wrap;overflow-wrap:anywhere}pre code{background:none;padding:0;color:inherit}.table{overflow-x:auto;margin:20px 0}table{border-collapse:collapse;width:100%;font-size:15px}th{background:#eaf1f1;text-align:left;color:#163e44}td,th{padding:12px 14px;border:1px solid #dce3e5;vertical-align:top}td:first-child{min-width:150px}tr:nth-child(even){background:#fafbfc}footer{margin-top:45px;font-size:13px;color:#66717a}.hero{max-width:100%;width:420px;border-radius:8px} @media(max-width:700px){main{margin:0;padding:24px 18px;border-radius:0}nav ol{columns:1}h1{font-size:28px}}@media print{body{background:white;font-size:10pt}header{padding:15px}main{box-shadow:none;padding:0;max-width:none}nav{display:none}h2{break-after:avoid;margin-top:24px}h3{break-after:avoid}tr,pre{break-inside:avoid}a{color:inherit}pre{background:#f3f4f6;color:#232630}}</style></head><body><header><small>FRANCK D DIGITAL AI</small><p>Cosmétiques Luxe · ComfyUI</p></header><main><nav aria-label="Sommaire"><strong>Sommaire</strong><ol><li><a href="#1-choisir-son-point-de-depart">1. Choisir son point de départ</a></li><li><a href="#2-installer-le-node-et-preparer-comfyui">2. Installer le node et préparer ComfyUI</a></li><li><a href="#3-creer-votre-premier-parfum">3. Créer votre premier parfum</a></li><li><a href="#4-comprendre-les-reglages-de-produit">4. Comprendre les réglages de Produit</a></li><li><a href="#5-utiliser-gamme-sans-confondre-ses-sorties">5. Utiliser Gamme sans confondre ses sorties</a></li><li><a href="#6-ouvrir-un-flacon-deja-cree">6. Ouvrir un flacon déjà créé</a></li><li><a href="#7-reunir-les-produits-dans-une-planche">7. Réunir les produits dans une planche</a></li><li><a href="#8-corriger-une-inscription">8. Corriger une inscription</a></li><li><a href="#9-preparer-une-egerie-et-un-lieu">9. Préparer une égérie et un lieu</a></li><li><a href="#10-animer-les-images">10. Animer les images</a></li><li><a href="#11-resoudre-les-problemes-courants">11. Résoudre les problèmes courants</a></li><li><a href="#12-liste-des-produits-disponibles">12. Liste des produits disponibles</a></li><li><a href="#13-organiser-les-fichiers">13. Organiser les fichiers</a></li><li><a href="#credit-et-licence">Crédit et licence</a></li></ol></nav><h1 id="manuel-de-cosmetiques-luxe-pour-comfyui">Manuel de Cosmétiques Luxe pour ComfyUI</h1>
+<p>Créez des visuels de produits, préparez une collection cohérente, puis utilisez vos images comme références pour une publicité animée. Ce guide accompagne les nodes <strong>Cosmétiques Luxe — Produit</strong> et <strong>Cosmétiques Luxe — Gamme</strong>, ainsi que les deux workflows du tutoriel de Franck D Digital AI.</p>
+<p>Les nodes Cosmétiques Luxe préparent du texte : ils ne génèrent eux-mêmes ni images ni vidéos. Le résultat dépend du générateur relié à leurs sorties. Les réglages communs orientent l&#x27;apparence d&#x27;une collection ; ils ne verrouillent pas la forme exacte d&#x27;un flacon ou son inscription.</p>
+<h2 id="1-choisir-son-point-de-depart">1. Choisir son point de départ</h2>
+<div class="table"><table><thead><tr><th>Votre objectif</th><th>Point de départ</th></tr></thead><tbody>
+<tr><td>Créer un parfum ou un autre cosmétique</td><td>Node Produit, puis générateur d&#x27;images</td></tr>
+<tr><td>Créer une collection avec des ajustements individuels</td><td>Réutiliser Produit pour chaque article</td></tr>
+<tr><td>Préparer plusieurs descriptions avec des réglages communs</td><td>Node Gamme</td></tr>
+<tr><td>Générer un seul article de cette liste</td><td>Sortie <code>prompt_index</code> de Gamme</td></tr>
+<tr><td>Réunir des produits déjà créés</td><td>Groupe « CREER PLANCHE PRODUITS », avec images de référence</td></tr>
+<tr><td>Retoucher un nom ou ouvrir un flacon existant</td><td>Groupe « Corriger une photo »</td></tr>
+<tr><td>Animer un produit ou une scène publicitaire</td><td>Workflow vidéo WAN fourni</td></tr>
+</tbody></table></div>
+<p><strong>NOCTURIA est l&#x27;exemple du tutoriel.</strong> Vous pouvez remplacer cette marque, les noms des produits, les palettes et les univers.</p>
+<h2 id="2-installer-le-node-et-preparer-comfyui">2. Installer le node et préparer ComfyUI</h2>
+<h3 id="installer-cosmetiques-luxe">Installer Cosmétiques Luxe</h3>
+<ol><li>Décompressez le paquet téléchargé.</li><li>Placez le dossier <code>cosmetics_luxe</code> dans le dossier <code>custom_nodes</code> de votre installation ComfyUI. Avec ComfyUI Desktop, utilisez le dossier de données de l&#x27;installation, pas un emplacement supposé dans Program Files.</li><li>Vérifiez la structure ci-dessous. Évitez un double dossier <code>cosmetics_luxe/cosmetics_luxe</code>.</li><li>Redémarrez ComfyUI et recherchez « Cosmétiques Luxe » dans la recherche de nodes.</li></ol>
+<pre><code>ComfyUI/
+  custom_nodes/
+    cosmetics_luxe/
+      __init__.py
+      nodes.py
+      README.md
+      docs/
+      workflows/</code></pre>
+<p>Les deux nodes utilisent uniquement la bibliothèque standard Python. Aucune installation de paquet Python supplémentaire n&#x27;est nécessaire pour ces deux nodes seuls.</p>
+<h3 id="preparer-les-workflows-complets">Préparer les workflows complets</h3>
+<p>Le workflow d&#x27;images utilise notamment <code>OpenAIGPTImageNodeV2</code>, <code>LoadImage</code>, <code>SaveImage</code> et <code>SaveText</code>. Le workflow vidéo utilise <code>Wan3ReferenceToVideoApi</code> et <code>SaveVideo</code>. Installer Cosmétiques Luxe ne fournit pas à lui seul tous ces composants.</p>
+<p>Les branches de génération fournies utilisent des nodes API. Prévoyez les accès et crédits demandés par votre installation. Le coût affiché par le générateur doit être vérifié avant de lancer le rendu ; il ne correspond pas au coût du node Cosmétiques Luxe.</p>
+<p>Si un node apparaît manquant, identifiez son type exact et installez ou mettez à jour l&#x27;extension correspondante. Le paquet d&#x27;origine de <code>SaveText</code> n&#x27;est pas identifié dans l&#x27;export fourni. Pour se passer de l&#x27;enregistrement des prompts, retirez uniquement les nodes <code>SaveText</code> et leurs connexions ; conservez <code>SaveImage</code>.</p>
+<p>Les noms de modèles sauvegardés dans les workflows sont des réglages de l&#x27;auteur. Sélectionnez un modèle disponible dans votre installation si celui enregistré ne l&#x27;est pas. Les entrées d&#x27;images et leurs limites dépendent du générateur choisi.</p>
+<h3 id="charger-les-exemples">Charger les exemples</h3>
+<ul><li><code>workflows/Tuto-Cosmétiques-Luxe.json</code> : création d&#x27;images, références, retouches et composition de produits.</li><li><code>workflows/Tuto-Cosmetics-Video-WAN-3.0.json</code> : animation d&#x27;une scène complète ou d&#x27;un produit seul.</li></ul>
+<p>Ouvrez ou glissez le JSON dans ComfyUI. Dans chaque <strong>Load Image</strong> utilisé, sélectionnez votre propre fichier. Un nom sauvegardé dans un node ne contient pas les pixels de l&#x27;image. Le paquet fournit seulement le parfum d&#x27;exemple <code>assets/NOCTURIA-Eau-de-Parfum.png</code> et sa version WebP, pas les autres références personnelles du tutoriel.</p>
+<p>Plusieurs branches sont enregistrées en mode bypass. Activez les nodes de la branche que vous souhaitez utiliser, y compris son node d&#x27;enregistrement, et désactivez les autres branches de génération. La couleur du cadre d&#x27;un groupe n&#x27;est pas un interrupteur : contrôlez le mode de ses nodes. Pour un premier essai simple, travaillez dans une copie du workflow ne contenant que la branche utile.</p>
+<h2 id="3-creer-votre-premier-parfum">3. Créer votre premier parfum</h2>
+<p>Utilisez la branche « CREATION DE PRODUITS COSMETIQUES AVEC NODE Cosmétiques Luxe - Produit ».</p>
+<div class="table"><table><thead><tr><th>Champ</th><th>Valeur d&#x27;exemple</th></tr></thead><tbody>
+<tr><td><code>univers</code></td><td>Gothique</td></tr>
+<tr><td><code>produit</code></td><td>Parfum</td></tr>
+<tr><td><code>plan</code></td><td>Héro fermé</td></tr>
+<tr><td><code>ratio</code></td><td>16:9</td></tr>
+<tr><td><code>marque</code></td><td>NOCTURIA</td></tr>
+<tr><td><code>nom_produit</code></td><td>Black Swan</td></tr>
+<tr><td><code>palette</code></td><td>Rouge sang &amp; or</td></tr>
+<tr><td><code>couleur_primaire</code>, <code>couleur_secondaire</code></td><td>Laisser vides</td></tr>
+<tr><td><code>silhouette</code></td><td>Signature du produit</td></tr>
+<tr><td><code>silhouette_libre</code></td><td>Laisser vide</td></tr>
+</tbody></table></div>
+<p>Ces valeurs sont à saisir : l&#x27;export peut s&#x27;ouvrir avec un parfum elfique et d&#x27;autres noms déjà sélectionnés.</p>
+<h3 id="brancher-et-lancer">Brancher et lancer</h3>
+<pre><code>Produit.prompt ────────────────&gt; Générateur d&#x27;images.prompt
+Générateur d&#x27;images.IMAGE ──────&gt; Save Image.images
+Produit.filename_prefix ───────&gt; Save Image.filename_prefix</code></pre>
+<p>Si <code>filename_prefix</code> est affiché comme champ de texte, utilisez l&#x27;option de conversion du champ en entrée proposée par votre interface, puis branchez la sortie.</p>
+<ol><li>Configurez le modèle et les dimensions dans le générateur. Le champ <code>ratio</code> de Produit ne modifie pas les dimensions à sa place. Pour du 16:9, choisissez un format horizontal disponible, par exemple 2048 × 1152 si le générateur le propose.</li><li>Pour commencer, demandez une seule image.</li><li>Lancez la branche et examinez le résultat.</li><li>Vérifiez le nom NOCTURIA, le nom Black Swan, le bouchon, les proportions et les matières.</li><li>Conservez l&#x27;image retenue comme référence. Le préfixe attendu est <code>NOCTURIA-Black-Swan-Perfume</code> ; Save Image peut lui ajouter sa numérotation.</li></ol>
+<p>Pour créer le produit suivant, gardez les réglages communs, changez son type et son nom, puis adaptez les réglages individuels nécessaires. Produit permet ainsi de construire toute une collection.</p>
+<h2 id="4-comprendre-les-reglages-de-produit">4. Comprendre les réglages de Produit</h2>
+<div class="table"><table><thead><tr><th>Champ</th><th>Effet</th></tr></thead><tbody>
+<tr><td><code>univers</code></td><td>Oriente le décor, la lumière, les motifs et les couleurs par défaut : Gothique, Féérique ou Elfique.</td></tr>
+<tr><td><code>produit</code></td><td>Choisit une description de contenant et des indications d&#x27;ouverture adaptées au type de cosmétique.</td></tr>
+<tr><td><code>plan</code></td><td>Décrit la présentation souhaitée dans le prompt.</td></tr>
+<tr><td><code>marque</code>, <code>nom_produit</code></td><td>Demandent les inscriptions sur le contenant et alimentent le nom de fichier.</td></tr>
+<tr><td><code>palette</code></td><td>Remplace les couleurs par défaut de l&#x27;univers par une association prédéfinie.</td></tr>
+<tr><td><code>couleur_primaire</code>, <code>couleur_secondaire</code></td><td>Remplacent individuellement les couleurs de la palette lorsqu&#x27;ils sont remplis.</td></tr>
+<tr><td><code>silhouette</code></td><td>Remplace la description de forme par défaut du contenant.</td></tr>
+<tr><td><code>silhouette_libre</code></td><td>Prend la priorité sur la liste de silhouettes lorsqu&#x27;il est rempli.</td></tr>
+<tr><td><code>ratio</code></td><td>Ajoute une indication de composition : 3:4, 9:16, 16:9 ou 1:1.</td></tr>
+</tbody></table></div>
+<p>Pour les couleurs, la priorité est <strong>univers → palette → champs libres</strong>. La couleur secondaire peut modifier le métal si le texte contient un terme reconnu, par exemple <code>gold</code>, <code>silver</code>, <code>or</code>, <code>argent</code>, <code>bronze</code> ou <code>cuivre</code>. Une couleur libre quelconque ne garantit pas cette adaptation.</p>
+<p>Pour la forme, la priorité est <strong>forme du produit → silhouette choisie → silhouette libre</strong>. Décrivez une forme concrète et vérifiez les matières obtenues : certaines descriptions de forme par défaut contiennent aussi des indications de matériau. Une référence visuelle peut mieux guider le générateur, sans garantir une copie exacte.</p>
+<h3 id="les-cinq-presentations">Les cinq présentations</h3>
+<div class="table"><table><thead><tr><th>Plan</th><th>Résultat demandé</th></tr></thead><tbody>
+<tr><td>Héro fermé</td><td>Produit principal fermé, seul et mis en valeur.</td></tr>
+<tr><td>Ouvert avec applicateur</td><td>Produit ouvert avec son accessoire ou son bouchon séparé. Contrôler la mécanique propre au produit.</td></tr>
+<tr><td>Planche produit (4 vues)</td><td>Une image comprenant produit de face, produit ouvert, détail de matière et échantillon de texture. Ce n&#x27;est pas une rotation face/profil/dos.</td></tr>
+<tr><td>Plan de groupe (gamme)</td><td>Composition à partir des images de référence transmises au générateur.</td></tr>
+<tr><td>Texture / swatch</td><td>Gros plan sur une texture ou un échantillon de couleur.</td></tr>
+</tbody></table></div>
+<p>Le plan ouvert utilise aussi une consigne générique d&#x27;applicateur. Pour une bougie ou un pot, une retouche explicite de l&#x27;image peut être plus facile à contrôler. La planche quatre vues combine des consignes de produit fermé et de vue ouverte ; si le générateur les mélange, créez les vues séparément. Le swatch utilise une formulation brillante : pour une poudre mate, précisez le fini attendu dans une consigne adaptée.</p>
+<h3 id="les-sorties">Les sorties</h3>
+<div class="table"><table><thead><tr><th>Sortie</th><th>Usage</th></tr></thead><tbody>
+<tr><td><code>prompt</code></td><td>Texte à envoyer au générateur.</td></tr>
+<tr><td><code>negative</code></td><td>Éléments à éviter, uniquement si votre générateur et votre workflow prennent en charge cette entrée. Sinon, laisser débranché.</td></tr>
+<tr><td><code>gamme_id</code></td><td>Identifiant textuel dérivé de la marque et de l&#x27;univers. Ce n&#x27;est ni une graine ni un verrou de cohérence.</td></tr>
+<tr><td><code>filename_prefix</code></td><td>Préfixe à transmettre au node d&#x27;enregistrement.</td></tr>
+</tbody></table></div>
+<p>Changer un réglage ou relancer une génération peut modifier le design. Pour réutiliser un contenant précis, partez de son image retenue plutôt que de compter seulement sur le même texte.</p>
+<h2 id="5-utiliser-gamme-sans-confondre-ses-sorties">5. Utiliser Gamme sans confondre ses sorties</h2>
+<p>Le node Gamme prépare les descriptions de plusieurs produits avec les mêmes réglages communs. Chaque ligne du champ <code>produits</code> correspond à un produit. À gauche de <code>|</code>, saisissez son type ; à droite, son nom.</p>
+<pre><code>Parfum | Black Swan
+Vernis à ongles | Blood Moon
+Rouge à lèvres (bâton) | Bloody Lips
+Rouge liquide (doe-foot) | Crimson Veil
+Highlighter (compact) | Lunar Halo
+Sérum (compte-gouttes) | Moonlight Elixir</code></pre>
+<p>Utilisez les types complets pour éviter les ambiguïtés. Les noms courts comme <code>Vernis</code>, <code>Fard</code> ou <code>Rouge liquide</code> sont également reconnus par les alias prévus. Les fautes mineures peuvent être rapprochées d&#x27;un produit connu, mais vérifiez la description obtenue.</p>
+<h3 id="reglages-propres-a-gamme">Réglages propres à Gamme</h3>
+<ul><li><code>plan_produits</code> : Héro fermé ou Ouvert avec applicateur pour les descriptions individuelles.</li><li><code>auto_nom</code> : propose un nom lorsque la partie droite d&#x27;une ligne est vide. Un nom saisi explicitement est conservé. Les noms automatiques peuvent se répéter sur une longue liste.</li><li><code>produit_libre</code> : si activé, un type non reconnu reçoit une description générique. Si désactivé, la ligne non reconnue est écartée.</li><li><code>index</code> : sélectionne un produit parmi les lignes retenues, à partir de 1. Les lignes vides et celles écartées en mode strict ne comptent pas. Un index trop grand sélectionne le dernier produit disponible.</li></ul>
+<h3 id="choisir-la-bonne-sortie">Choisir la bonne sortie</h3>
+<div class="table"><table><thead><tr><th>Sortie</th><th>Ce qu&#x27;elle contient</th></tr></thead><tbody>
+<tr><td><code>prompts</code></td><td>Toutes les descriptions individuelles dans un seul texte, séparées par <code>---</code>. Ce n&#x27;est pas une boucle de génération automatique.</td></tr>
+<tr><td><code>prompt_index</code></td><td>Description du seul produit sélectionné par <code>index</code>.</td></tr>
+<tr><td><code>filename_index</code></td><td>Nom de fichier de ce produit sélectionné.</td></tr>
+<tr><td><code>filename_prefixes</code></td><td>Liste textuelle des noms de fichiers, un par ligne.</td></tr>
+<tr><td><code>group_prompt</code></td><td>Consigne de composition d&#x27;images de référence, avec leur nombre attendu.</td></tr>
+<tr><td><code>gamme_id</code></td><td>Identifiant textuel de marque et d&#x27;univers.</td></tr>
+<tr><td><code>count</code></td><td>Nombre de produits retenus.</td></tr>
+<tr><td><code>ignored</code></td><td>Message indiquant les types non reconnus, écartés ou traités en mode libre ; sinon, confirmation de reconnaissance.</td></tr>
+</tbody></table></div>
+<p><strong>Point essentiel :</strong> dans ce code, <code>group_prompt</code> ne reprend pas les noms et descriptions individuels de la liste. Il demande au générateur de suivre les images de référence. Modifier un nom dans la liste ne suffit donc pas à remplacer une inscription lorsque cette sortie est utilisée.</p>
+<h3 id="generer-un-produit-a-la-fois">Générer un produit à la fois</h3>
+<pre><code>Gamme.prompt_index ────────────&gt; Générateur.prompt
+Gamme.filename_index ──────────&gt; Save Image.filename_prefix
+Générateur.IMAGE ──────────────&gt; Save Image.images</code></pre>
+<p>Choisissez <code>index = 1</code>, générez, puis passez à 2. C&#x27;est dans ce branchement que l&#x27;index sélectionne le contenu demandé au générateur.</p>
+<h3 id="composer-une-gamme-en-un-seul-rendu">Composer une gamme en un seul rendu</h3>
+<p>Dans la branche Gamme du workflow fourni, <strong><code>group_prompt</code> est relié au générateur avec quatre Load Image</strong>. Elle produit une composition de groupe à partir de ces références. Le champ <code>index</code> ne modifie pas cette consigne ; il peut encore modifier le nom du fichier si <code>filename_index</code> reste branché.</p>
+<p>Pour enregistrer une collection, débranchez <code>filename_index</code> du préfixe d&#x27;enregistrement et utilisez un nom comme <code>NOCTURIA-Gamme</code>. Adaptez également le préfixe du SaveText éventuel. Faites correspondre le nombre de références connectées au nombre de produits prévu.</p>
+<p>Si vous voulez expérimenter une collection à partir des descriptions seules, utilisez le texte de <code>prompts</code> et une consigne explicite de composition dans un générateur compatible. Cela demande de nouveaux visuels et ne reproduit pas automatiquement les produits déjà créés. Ce n&#x27;est pas le branchement du workflow fourni.</p>
+<h2 id="6-ouvrir-un-flacon-deja-cree">6. Ouvrir un flacon déjà créé</h2>
+<p>Utilisez le groupe <strong>« Corriger une photo »</strong> avec l&#x27;image retenue du flacon fermé. La retouche d&#x27;une référence permet de demander un changement local, plutôt que de recréer tout le produit depuis sa description.</p>
+<pre><code>À partir de cette image, retire le bouchon du flacon de parfum
+et pose ce même bouchon à côté sur la surface. Fais apparaître
+le vaporisateur sur le col. Un seul flacon et un seul bouchon.
+Conserve les proportions, matières, ornements, couleurs et
+inscriptions. Préserve le décor et l&#x27;éclairage, avec une ombre
+de contact naturelle sous le bouchon.</code></pre>
+<p>Pour le rouge liquide, le mascara ou le sérum, décrivez l&#x27;ensemble bouchon-tige-applicateur ou bouchon-pipette comme une seule pièce. Ne demandez pas de vaporisateur à un produit qui n&#x27;en possède pas.</p>
+<p>Le groupe de correction exporté relie également la sortie MASK du Load Image à l&#x27;entrée de masque du générateur. Vérifiez ce masque si vous souhaitez une retouche locale. Si vous utilisez une modification globale par instruction, vérifiez si le générateur accepte l&#x27;entrée de masque débranchée. Un masque vide ou inadapté peut empêcher la correction attendue.</p>
+<p>Après rendu, contrôlez le nombre de bouchons, leur échelle, les mains éventuelles, les inscriptions et tous les détails situés hors de la zone modifiée.</p>
+<h2 id="7-reunir-les-produits-dans-une-planche">7. Réunir les produits dans une planche</h2>
+<p>Le groupe <strong>« CREER PLANCHE PRODUITS »</strong> utilise directement un prompt et des références : il ne nécessite pas de passer par le node Gamme.</p>
+<ol><li>Chargez une image retenue par produit.</li><li>Connectez chaque sortie IMAGE à une entrée de référence du générateur.</li><li>Faites correspondre les numéros du prompt à l&#x27;ordre réel des entrées. La position des nodes sur le canevas ne détermine pas cet ordre.</li><li>Décrivez la disposition, le décor, la lumière et les inscriptions attendues.</li><li>Réglez les dimensions dans le générateur, puis lancez la branche.</li></ol>
+<div class="table"><table><thead><tr><th>Référence</th><th>Produit de l&#x27;exemple</th></tr></thead><tbody>
+<tr><td>@Image1</td><td>Parfum Black Swan</td></tr>
+<tr><td>@Image2</td><td>Vernis Blood Moon</td></tr>
+<tr><td>@Image3</td><td>Rouge à lèvres Bloody Lips</td></tr>
+<tr><td>@Image4</td><td>Rouge liquide Crimson Veil</td></tr>
+<tr><td>@Image5</td><td>Highlighter Lunar Halo</td></tr>
+<tr><td>@Image6</td><td>Sérum Moonlight Elixir</td></tr>
+</tbody></table></div>
+<p><strong>Avant le premier rendu :</strong> dans l&#x27;export fourni, le prompt annonce six références, mais seules les quatre premières sont connectées au générateur. Les Load Image de l&#x27;highlighter et du sérum sont présents ; connectez-les aux entrées supplémentaires si votre générateur les accepte. Si six références ne sont pas disponibles, adaptez la composition au nombre pris en charge ou choisissez un générateur adapté. La mention <code>@Image6</code> n&#x27;ajoute pas une image à elle seule.</p>
+<p>Exemple de prompt pour un générateur recevant les six images :</p>
+<pre><code>Crée une photographie publicitaire horizontale 16:9 réunissant
+exactement six produits, chacun présent une seule fois.
+@Image1 : parfum NOCTURIA Black Swan.
+@Image2 : vernis NOCTURIA Blood Moon.
+@Image3 : rouge à lèvres NOCTURIA Bloody Lips.
+@Image4 : rouge liquide NOCTURIA Crimson Veil.
+@Image5 : highlighter NOCTURIA Lunar Halo.
+@Image6 : sérum NOCTURIA Moonlight Elixir.
+
+Préserve les contenants distincts, leurs proportions, fermetures,
+ornements et inscriptions. Tous restent fermés. Ne montre pas
+la boîte en carton du vernis. Aucun bouchon supplémentaire.
+
+Dispose les produits sur du marbre noir devant un velours bordeaux,
+avec une lumière raffinée révélant le verre et l&#x27;or. Place le parfum
+au centre, les autres produits autour, à des tailles crédibles.
+Chaque produit doit rester entier, séparé et lisible, sans masquer
+les autres. Une seule scène photographique, pas une grille.
+N&#x27;ajoute aucun titre ni texte extérieur aux emballages.</code></pre>
+<p>Contrôlez les six silhouettes, les deux rouges à lèvres, le compte-gouttes et les inscriptions. Une composition de groupe peut redessiner certains détails malgré les références.</p>
+<h2 id="8-corriger-une-inscription">8. Corriger une inscription</h2>
+<p>Chargez la composition obtenue dans <strong>« Corriger une photo »</strong>. Identifiez le produit par sa position et son apparence, puis donnez le texte exact.</p>
+<pre><code>Sur le flacon de parfum rouge situé au centre, remplace uniquement
+« BLACK SWAM » par « BLACK SWAN ». Conserve la marque « NOCTURIA »,
+le style, la couleur et la position du lettrage. Préserve le flacon,
+ses ornements, les cinq autres produits et leurs inscriptions,
+ainsi que la composition, le décor et l&#x27;éclairage.</code></pre>
+<p>Vérifiez le mot corrigé à taille réelle, puis inspectez le reste de l&#x27;image. Si la retouche dégrade les autres produits, repartez de la meilleure version et précisez la zone ou utilisez un masque adapté au générateur. Conservez les versions pour comparer.</p>
+<h2 id="9-preparer-une-egerie-et-un-lieu">9. Préparer une égérie et un lieu</h2>
+<p>Le workflow d&#x27;images contient aussi des groupes de création et retouche de personnages et de décors. Leurs prompts sont des exemples : choisissez une direction cohérente avec vos produits avant de lancer.</p>
+<p>Pour une scène publicitaire, préparez séparément :</p>
+<ul><li>le produit retenu, avec ses inscriptions lisibles ;</li><li>un portrait de référence de la personne adulte ;</li><li>une référence de tenue, si elle doit être conservée ;</li><li>le lieu, avec une surface où présenter le produit et de l&#x27;espace pour la personne.</li></ul>
+<p>Pour une démonstration de cosmétique, laissez le visage, les mains et la zone d&#x27;application visibles. Utilisez le même portrait pour préparer les variantes du personnage. Si l&#x27;objectif est un décor vide, remplacez tout prompt de personnage et retirez les références de personne devenues inutiles, quelle que soit l&#x27;étiquette du groupe.</p>
+<h2 id="10-animer-les-images">10. Animer les images</h2>
+<p>Ouvrez <code>Tuto-Cosmetics-Video-WAN-3.0.json</code>. Choisissez l&#x27;un des deux groupes et contrôlez ses nodes actifs, le prompt, les références, les réglages et l&#x27;enregistrement.</p>
+<h3 id="scene-cosmetique-complete">Scène cosmétique complète</h3>
+<p>Le groupe « ANIMATION SCENE COSMETIQUE COMPLETE » prévoit quatre références :</p>
+<div class="table"><table><thead><tr><th>Entrée</th><th>Contenu</th></tr></thead><tbody>
+<tr><td>image1</td><td>Produit</td></tr>
+<tr><td>image2</td><td>Visage de l&#x27;égérie</td></tr>
+<tr><td>image3</td><td>Tenue et silhouette</td></tr>
+<tr><td>image4</td><td>Lieu</td></tr>
+</tbody></table></div>
+<p>Pour un clip de 15 secondes, un découpage simple peut demander environ cinq secondes de présentation, cinq secondes de geste et cinq secondes de résultat. Les durées dans le prompt sont des intentions ; contrôlez les coupes dans la vidéo produite.</p>
+<p>L&#x27;export contient un exemple consacré au sérum. Adaptez le produit, ses noms et les gestes avant de le réutiliser. Le préfixe de SaveVideo enregistré dans cette branche est encore <code>Gothic_Powder</code> : remplacez-le par un nom correspondant au clip, par exemple <code>NOCTURIA-Moonlight-Elixir-Scene</code>.</p>
+<h3 id="produit-seul">Produit seul</h3>
+<p>Le groupe « ANIMATION SEULEMENT SUR PRODUIT » utilise le produit en image1 et le lieu en image2. Il est configuré dans l&#x27;export pour un clip de cinq secondes en 720p, 16:9, avec audio activé.</p>
+<p>Le prompt sauvegardé contient des restes de formulations sur le sérum et trois plans. Pour un parfum seul, remplacez-le par une consigne cohérente comme celle-ci :</p>
+<pre><code>Create a 5-second photorealistic luxury perfume commercial, 16:9.
+@Image1 defines the NOCTURIA Black Swan bottle and its inscriptions.
+@Image2 defines the gothic location.
+One continuous close-up shot of the closed bottle on black marble.
+Slow, subtle camera movement, realistic glass and gold reflections.
+Keep the bottle shape, cap and label consistent throughout.
+No hands, no opening, no additional products or added text.
+Subtle gothic instrumental music, no speech.</code></pre>
+<p>Réglez aussi la durée et le ratio dans le node vidéo. Mentionner « 15 secondes » ou « 9:16 » dans le texte ne remplace pas ces réglages. Si vous comparez deux prompts, gardez la même seed lorsque le service le permet et désactivez sa randomisation ; cela ne garantit toutefois pas un résultat identique.</p>
+<p>Pour chaque clip, inspectez le début, les changements de plan et la fin, puis regardez-le en lecture continue avec le son. Vérifiez les contenants, inscriptions, doigts, yeux, applicateurs et raccords de tenue. Pour un geste difficile, préférez un mouvement court ou une coupe entre produit posé et produit tenu. Une image corrigée ne corrige pas une vidéo déjà générée.</p>
+<h2 id="11-resoudre-les-problemes-courants">11. Résoudre les problèmes courants</h2>
+<div class="table"><table><thead><tr><th>Problème</th><th>Vérification ou solution</th></tr></thead><tbody>
+<tr><td>Cosmétiques Luxe n&#x27;apparaît pas</td><td>Vérifier <code>__init__.py</code> et <code>nodes.py</code> au premier niveau du dossier installé, redémarrer ComfyUI et consulter l&#x27;erreur de chargement.</td></tr>
+<tr><td>Node rouge ou inconnu</td><td>Identifier son type et installer le composant nécessaire. Cosmétiques Luxe ne fournit pas les générateurs du workflow.</td></tr>
+<tr><td>Image absente</td><td>Recharger un fichier local dans chaque Load Image utilisé, y compris les références portant la mention <code>[output]</code>.</td></tr>
+<tr><td>Index semble sans effet</td><td>Contrôler si le générateur reçoit <code>prompt_index</code>, <code>prompts</code> ou <code>group_prompt</code>. Index ne sélectionne le prompt qu&#x27;avec <code>prompt_index</code>.</td></tr>
+<tr><td>Toute la gamme est enregistrée sous le nom d&#x27;un parfum</td><td>Remplacer la connexion <code>filename_index</code> par un préfixe de collection.</td></tr>
+<tr><td>Il manque un produit</td><td>Vérifier <code>count</code>, <code>ignored</code>, les entrées IMAGE réellement branchées, l&#x27;ordre et le nombre de références.</td></tr>
+<tr><td>Un type produit donne un résultat étrange</td><td>Utiliser son nom officiel ; contrôler si <code>produit_libre</code> l&#x27;a transformé en contenant générique.</td></tr>
+<tr><td>L&#x27;image n&#x27;a pas le format annoncé</td><td>Régler les dimensions sur le générateur, pas seulement <code>ratio</code> sur Cosmétiques Luxe.</td></tr>
+<tr><td>Le rendu ne se lance pas</td><td>Vérifier les nodes en bypass, le node d&#x27;enregistrement, les entrées requises, le modèle, l&#x27;accès API et les crédits affichés.</td></tr>
+<tr><td>Une correction ne change rien</td><td>Examiner le prompt, la référence et le masque transmis.</td></tr>
+<tr><td>Le flacon change entre deux vues</td><td>Utiliser l&#x27;image retenue comme référence de retouche et demander uniquement la modification nécessaire.</td></tr>
+<tr><td>Double bouchon ou applicateur inventé</td><td>Décrire une seule pièce et une mécanique explicite, puis contrôler le résultat.</td></tr>
+<tr><td>Les noms sont mal écrits</td><td>Corriger d&#x27;abord l&#x27;image ; recontrôler les inscriptions après composition et animation.</td></tr>
+<tr><td>Il manque un champ ou une sortie du node</td><td>Dans une copie du workflow, ajouter une instance neuve du node installé, reporter ses réglages et reconnecter ses sorties avant de réexporter.</td></tr>
+</tbody></table></div>
+<h2 id="12-liste-des-produits-disponibles">12. Liste des produits disponibles</h2>
+<div class="table"><table><thead><tr><th>Famille</th><th>Produits</th></tr></thead><tbody>
+<tr><td>Parfums et ambiance</td><td>Parfum ; Eau de toilette ; Parfum solide (compact) ; Bougie parfumée</td></tr>
+<tr><td>Lèvres</td><td>Rouge à lèvres (bâton) ; Rouge liquide (doe-foot) ; Gloss (doe-foot) ; Baume à lèvres (stick) ; Crayon à lèvres</td></tr>
+<tr><td>Yeux</td><td>Fard à paupières (palette) ; Eye-liner (feutre) ; Mascara ; Crayon yeux ; Sourcils (crayon/gel)</td></tr>
+<tr><td>Teint</td><td>Highlighter (compact) ; Poudre (compact) ; Blush (compact) ; Fond de teint (pompe) ; Correcteur (anti-cernes) ; Bronzer (compact) ; Poudre libre (pot)</td></tr>
+<tr><td>Soin</td><td>Sérum (compte-gouttes) ; Crème (pot) ; Huile (compte-gouttes) ; Brume / lotion (spray) ; Démaquillant (pompe) ; Masque (tube)</td></tr>
+<tr><td>Ongles</td><td>Vernis à ongles</td></tr>
+</tbody></table></div>
+<h2 id="13-organiser-les-fichiers">13. Organiser les fichiers</h2>
+<p>Conservez séparément les images retenues, les essais, les références et les vidéos. Pour une image de collection, utilisez un préfixe de collection ; pour un produit, utilisez son nom ; pour une vidéo, ajoutez le geste ou le type de plan.</p>
+<pre><code>NOCTURIA-Black-Swan-Ferme
+NOCTURIA-Black-Swan-Ouvert
+NOCTURIA-Collection-Six-Produits
+NOCTURIA-Crimson-Veil-Application
+NOCTURIA-Moonlight-Elixir-Scene</code></pre>
+<p>Le node prépare un préfixe ; c&#x27;est le node d&#x27;enregistrement qui écrit le fichier et gère sa destination. Les références et leur ordre doivent être conservés avec le workflow si vous voulez reprendre le projet.</p>
+<h2 id="credit-et-licence">Crédit et licence</h2>
+<p>Créé par <strong>Franck Dupas — Franck D Digital AI</strong>. Le fichier <a href="../LICENSE">LICENSE</a> contient les conditions MIT du paquet. Les modèles, services et extensions utilisés avec les workflows ont leurs propres conditions.</p>
+<p>Retour à la <a href="../README.md">présentation et à l&#x27;installation rapide</a>.</p><footer>Franck Dupas · Documentation du paquet · 26 octobre 2026</footer></main></body></html>
